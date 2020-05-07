@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DiplomModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Kabinet">
+          <Key>
+            <PropertyRef Name="ID_K" />
+          </Key>
+          <Property Name="ID_K" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie_K" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klass">
+          <Key>
+            <PropertyRef Name="ID_Klass" />
+          </Key>
+          <Property Name="ID_Klass" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie_K" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Predmet">
+          <Key>
+            <PropertyRef Name="ID_P" />
+          </Key>
+          <Property Name="ID_P" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie_P" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Uchitel">
+          <Key>
+            <PropertyRef Name="ID_Uchitel" />
+          </Key>
+          <Property Name="ID_Uchitel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Familia" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Imya" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Otchestvo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Urok">
+          <Key>
+            <PropertyRef Name="ID_Urok" />
+          </Key>
+          <Property Name="ID_Urok" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Weekday" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nomer_uroka" Type="int" Nullable="false" />
+          <Property Name="ID_Klass" Type="int" Nullable="false" />
+          <Property Name="ID_Uchitel" Type="int" Nullable="false" />
+          <Property Name="ID_K" Type="int" Nullable="false" />
+          <Property Name="ID_Predmet" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Urok__ID_K__300424B4">
+          <End Role="Kabinet" Type="Self.Kabinet" Multiplicity="1" />
+          <End Role="Urok" Type="Self.Urok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kabinet">
+              <PropertyRef Name="ID_K" />
+            </Principal>
+            <Dependent Role="Urok">
+              <PropertyRef Name="ID_K" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Urok__ID_Klass__2E1BDC42">
+          <End Role="Klass" Type="Self.Klass" Multiplicity="1" />
+          <End Role="Urok" Type="Self.Urok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klass">
+              <PropertyRef Name="ID_Klass" />
+            </Principal>
+            <Dependent Role="Urok">
+              <PropertyRef Name="ID_Klass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Urok__ID_Predmet__30F848ED">
+          <End Role="Predmet" Type="Self.Predmet" Multiplicity="1" />
+          <End Role="Urok" Type="Self.Urok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Predmet">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="Urok">
+              <PropertyRef Name="ID_Predmet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Urok__ID_Uchitel__2F10007B">
+          <End Role="Uchitel" Type="Self.Uchitel" Multiplicity="1" />
+          <End Role="Urok" Type="Self.Urok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uchitel">
+              <PropertyRef Name="ID_Uchitel" />
+            </Principal>
+            <Dependent Role="Urok">
+              <PropertyRef Name="ID_Uchitel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DiplomModelContainer">
+          <EntitySet Name="Kabinet" EntityType="Self.Kabinet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klass" EntityType="Self.Klass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Predmet" EntityType="Self.Predmet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uchitel" EntityType="Self.Uchitel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Urok" EntityType="Self.Urok" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Urok__ID_K__300424B4" Association="Self.FK__Urok__ID_K__300424B4">
+            <End Role="Kabinet" EntitySet="Kabinet" />
+            <End Role="Urok" EntitySet="Urok" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Urok__ID_Klass__2E1BDC42" Association="Self.FK__Urok__ID_Klass__2E1BDC42">
+            <End Role="Klass" EntitySet="Klass" />
+            <End Role="Urok" EntitySet="Urok" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Urok__ID_Predmet__30F848ED" Association="Self.FK__Urok__ID_Predmet__30F848ED">
+            <End Role="Predmet" EntitySet="Predmet" />
+            <End Role="Urok" EntitySet="Urok" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Urok__ID_Uchitel__2F10007B" Association="Self.FK__Urok__ID_Uchitel__2F10007B">
+            <End Role="Uchitel" EntitySet="Uchitel" />
+            <End Role="Urok" EntitySet="Urok" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DiplomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Kabinet">
+          <Key>
+            <PropertyRef Name="ID_K" />
+          </Key>
+          <Property Name="ID_K" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie_K" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Urok" Relationship="Self.FK__Urok__ID_K__300424B4" FromRole="Kabinet" ToRole="Urok" />
+        </EntityType>
+        <EntityType Name="Klass">
+          <Key>
+            <PropertyRef Name="ID_Klass" />
+          </Key>
+          <Property Name="ID_Klass" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie_K" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Urok" Relationship="Self.FK__Urok__ID_Klass__2E1BDC42" FromRole="Klass" ToRole="Urok" />
+        </EntityType>
+        <EntityType Name="Predmet">
+          <Key>
+            <PropertyRef Name="ID_P" />
+          </Key>
+          <Property Name="ID_P" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie_P" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Urok" Relationship="Self.FK__Urok__ID_Predmet__30F848ED" FromRole="Predmet" ToRole="Urok" />
+        </EntityType>
+        <EntityType Name="Uchitel">
+          <Key>
+            <PropertyRef Name="ID_Uchitel" />
+          </Key>
+          <Property Name="ID_Uchitel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Familia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Imya" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Otchestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Urok" Relationship="Self.FK__Urok__ID_Uchitel__2F10007B" FromRole="Uchitel" ToRole="Urok" />
+        </EntityType>
+        <EntityType Name="Urok">
+          <Key>
+            <PropertyRef Name="ID_Urok" />
+          </Key>
+          <Property Name="ID_Urok" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Weekday" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nomer_uroka" Type="Int32" Nullable="false" />
+          <Property Name="ID_Klass" Type="Int32" Nullable="false" />
+          <Property Name="ID_Uchitel" Type="Int32" Nullable="false" />
+          <Property Name="ID_K" Type="Int32" Nullable="false" />
+          <Property Name="ID_Predmet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kabinet" Relationship="Self.FK__Urok__ID_K__300424B4" FromRole="Urok" ToRole="Kabinet" />
+          <NavigationProperty Name="Klass" Relationship="Self.FK__Urok__ID_Klass__2E1BDC42" FromRole="Urok" ToRole="Klass" />
+          <NavigationProperty Name="Predmet" Relationship="Self.FK__Urok__ID_Predmet__30F848ED" FromRole="Urok" ToRole="Predmet" />
+          <NavigationProperty Name="Uchitel" Relationship="Self.FK__Urok__ID_Uchitel__2F10007B" FromRole="Urok" ToRole="Uchitel" />
+        </EntityType>
+        <Association Name="FK__Urok__ID_K__300424B4">
+          <End Role="Kabinet" Type="Self.Kabinet" Multiplicity="1" />
+          <End Role="Urok" Type="Self.Urok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kabinet">
+              <PropertyRef Name="ID_K" />
+            </Principal>
+            <Dependent Role="Urok">
+              <PropertyRef Name="ID_K" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Urok__ID_Klass__2E1BDC42">
+          <End Role="Klass" Type="Self.Klass" Multiplicity="1" />
+          <End Role="Urok" Type="Self.Urok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klass">
+              <PropertyRef Name="ID_Klass" />
+            </Principal>
+            <Dependent Role="Urok">
+              <PropertyRef Name="ID_Klass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Urok__ID_Predmet__30F848ED">
+          <End Role="Predmet" Type="Self.Predmet" Multiplicity="1" />
+          <End Role="Urok" Type="Self.Urok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Predmet">
+              <PropertyRef Name="ID_P" />
+            </Principal>
+            <Dependent Role="Urok">
+              <PropertyRef Name="ID_Predmet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Urok__ID_Uchitel__2F10007B">
+          <End Role="Uchitel" Type="Self.Uchitel" Multiplicity="1" />
+          <End Role="Urok" Type="Self.Urok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uchitel">
+              <PropertyRef Name="ID_Uchitel" />
+            </Principal>
+            <Dependent Role="Urok">
+              <PropertyRef Name="ID_Uchitel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DiplomEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Kabinet" EntityType="Self.Kabinet" />
+          <EntitySet Name="Klass" EntityType="Self.Klass" />
+          <EntitySet Name="Predmet" EntityType="Self.Predmet" />
+          <EntitySet Name="Uchitel" EntityType="Self.Uchitel" />
+          <EntitySet Name="Urok" EntityType="Self.Urok" />
+          <AssociationSet Name="FK__Urok__ID_K__300424B4" Association="Self.FK__Urok__ID_K__300424B4">
+            <End Role="Kabinet" EntitySet="Kabinet" />
+            <End Role="Urok" EntitySet="Urok" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Urok__ID_Klass__2E1BDC42" Association="Self.FK__Urok__ID_Klass__2E1BDC42">
+            <End Role="Klass" EntitySet="Klass" />
+            <End Role="Urok" EntitySet="Urok" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Urok__ID_Predmet__30F848ED" Association="Self.FK__Urok__ID_Predmet__30F848ED">
+            <End Role="Predmet" EntitySet="Predmet" />
+            <End Role="Urok" EntitySet="Urok" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Urok__ID_Uchitel__2F10007B" Association="Self.FK__Urok__ID_Uchitel__2F10007B">
+            <End Role="Uchitel" EntitySet="Uchitel" />
+            <End Role="Urok" EntitySet="Urok" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DiplomModelContainer" CdmEntityContainer="DiplomEntities">
+          <EntitySetMapping Name="Kabinet">
+            <EntityTypeMapping TypeName="DiplomModel.Kabinet">
+              <MappingFragment StoreEntitySet="Kabinet">
+                <ScalarProperty Name="ID_K" ColumnName="ID_K" />
+                <ScalarProperty Name="Nazvanie_K" ColumnName="Nazvanie_K" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klass">
+            <EntityTypeMapping TypeName="DiplomModel.Klass">
+              <MappingFragment StoreEntitySet="Klass">
+                <ScalarProperty Name="ID_Klass" ColumnName="ID_Klass" />
+                <ScalarProperty Name="Nazvanie_K" ColumnName="Nazvanie_K" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Predmet">
+            <EntityTypeMapping TypeName="DiplomModel.Predmet">
+              <MappingFragment StoreEntitySet="Predmet">
+                <ScalarProperty Name="ID_P" ColumnName="ID_P" />
+                <ScalarProperty Name="Nazvanie_P" ColumnName="Nazvanie_P" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uchitel">
+            <EntityTypeMapping TypeName="DiplomModel.Uchitel">
+              <MappingFragment StoreEntitySet="Uchitel">
+                <ScalarProperty Name="ID_Uchitel" ColumnName="ID_Uchitel" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Imya" ColumnName="Imya" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urok">
+            <EntityTypeMapping TypeName="DiplomModel.Urok">
+              <MappingFragment StoreEntitySet="Urok">
+                <ScalarProperty Name="ID_Urok" ColumnName="ID_Urok" />
+                <ScalarProperty Name="Weekday" ColumnName="Weekday" />
+                <ScalarProperty Name="Nomer_uroka" ColumnName="Nomer_uroka" />
+                <ScalarProperty Name="ID_Klass" ColumnName="ID_Klass" />
+                <ScalarProperty Name="ID_Uchitel" ColumnName="ID_Uchitel" />
+                <ScalarProperty Name="ID_K" ColumnName="ID_K" />
+                <ScalarProperty Name="ID_Predmet" ColumnName="ID_Predmet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
