@@ -31,6 +31,10 @@ namespace Timetable
             comboBoxUschitel.DataSource = DBobjects.Entities.Uchitel.Select(p => p.Familia).ToList();
             comboBoxUschitel.SelectedItem = UROK.Uchitel.Familia;
         }
-      
+
+        private void SaveBatton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

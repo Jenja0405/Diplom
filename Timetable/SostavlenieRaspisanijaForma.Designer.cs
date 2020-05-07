@@ -59,6 +59,7 @@
             this.SaveBatton.TabIndex = 22;
             this.SaveBatton.Text = "Сохранить";
             this.SaveBatton.UseVisualStyleBackColor = true;
+            this.SaveBatton.Click += new System.EventHandler(this.SaveBatton_Click);
             // 
             // comboBoxUschitel
             // 
