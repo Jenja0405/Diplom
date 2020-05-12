@@ -13,10 +13,10 @@ namespace Timetable
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DiplomEntities : DbContext
+    public partial class MyEntities : DbContext
     {
-        public DiplomEntities()
-            : base("name=DiplomEntities")
+        public MyEntities()
+            : base("name=MyEntities")
         {
         }
     
@@ -27,6 +27,7 @@ namespace Timetable
     
         public virtual DbSet<Kabinet> Kabinet { get; set; }
         public virtual DbSet<Klass> Klass { get; set; }
+        public virtual DbSet<KlassPredmet> KlassPredmet { get; set; }
         public virtual DbSet<Predmet> Predmet { get; set; }
         public virtual DbSet<Uchitel> Uchitel { get; set; }
         public virtual DbSet<Urok> Urok { get; set; }

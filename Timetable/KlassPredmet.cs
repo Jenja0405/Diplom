@@ -12,22 +12,22 @@ namespace Timetable
     using System;
     using System.Collections.Generic;
     
-    public partial class Klass
+    public partial class KlassPredmet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Klass()
+        public KlassPredmet()
         {
-            this.KlassPredmet = new HashSet<KlassPredmet>();
-            this.Urok = new HashSet<Urok>();
+            this.Uchitel = new HashSet<Uchitel>();
         }
     
+        public int ID_KlassPredmet { get; set; }
         public int ID_Klass { get; set; }
-        public string Nazvanie_K { get; set; }
+        public int ID_Predmet { get; set; }
+        public short UrokovVNedelyu { get; set; }
     
+        public virtual Klass Klass { get; set; }
+        public virtual Predmet Predmet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KlassPredmet> KlassPredmet { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Urok> Urok { get; set; }
-        public override string ToString() => Nazvanie_K;
+        public virtual ICollection<Uchitel> Uchitel { get; set; }
     }
 }

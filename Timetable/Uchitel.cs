@@ -18,6 +18,7 @@ namespace Timetable
         public Uchitel()
         {
             this.Urok = new HashSet<Urok>();
+            this.KlassPredmet = new HashSet<KlassPredmet>();
         }
     
         public int ID_Uchitel { get; set; }
@@ -27,6 +28,8 @@ namespace Timetable
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Urok> Urok { get; set; }
-        public override string ToString() => Familia + Imya + Otchestvo;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KlassPredmet> KlassPredmet { get; set; }
+        public override string ToString() => Familia +" "+ Imya + " " + Otchestvo;
     }
 }

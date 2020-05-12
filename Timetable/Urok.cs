@@ -15,12 +15,12 @@ namespace Timetable
     public partial class Urok
     {
         public int ID_Urok { get; set; }
-        public string Weekday { get; set; }
-        public int Nomer_uroka { get; set; }
+        public int ID_Predmet { get; set; }
         public int ID_Klass { get; set; }
         public int ID_Uchitel { get; set; }
-        public int ID_K { get; set; }
-        public int ID_Predmet { get; set; }
+        public int ID_Kabinet { get; set; }
+        public string Weekday { get; set; }
+        public int Nomer_uroka { get; set; }
     
         public virtual Kabinet Kabinet { get; set; }
         public virtual Klass Klass { get; set; }

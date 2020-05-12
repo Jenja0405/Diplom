@@ -25,7 +25,7 @@ namespace Timetable
         }
         private void Save()
         {
-            if (DBobjects.Entities.Predmet.Where(p => p.ID_P == PREDMET.ID_P).Count() == 0)
+            if (DBobjects.Entities.Predmet.Where(p => p.ID_Predmet == PREDMET.ID_Predmet).Count() == 0)
             {
                 DBobjects.Entities.Predmet.Add(PREDMET);
             }
@@ -35,7 +35,7 @@ namespace Timetable
         }
         private void Remove()
         {
-            if (DBobjects.Entities.Predmet.Where(p => p.ID_P == PREDMET.ID_P).Count() > 0)
+            if (DBobjects.Entities.Predmet.Where(p => p.ID_Predmet == PREDMET.ID_Predmet).Count() > 0)
             {
                 DBobjects.Entities.Predmet.Remove(PREDMET);
                 DBobjects.Entities.SaveChanges();

@@ -58,6 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBobjects.cs" />
+    <Compile Include="Kabinet.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="KabinetForma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,9 +73,6 @@
     <Compile Include="Glavnajaforma.Designer.cs">
       <DependentUpon>Glavnajaforma.cs</DependentUpon>
     </Compile>
-    <Compile Include="Kabinet.cs">
-      <DependentUpon>MyModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Klass.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
@@ -81,6 +81,9 @@
     </Compile>
     <Compile Include="KlassForma.Designer.cs">
       <DependentUpon>KlassForma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KlassPredmet.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MyModel.Context.cs">
       <AutoGen>True</AutoGen>

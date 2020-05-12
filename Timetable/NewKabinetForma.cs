@@ -26,7 +26,7 @@ namespace Timetable
         }
         private void Save()
         {
-            if (DBobjects.Entities.Kabinet.Where(p => p.ID_K == KABINET.ID_K).Count() == 0)
+            if (DBobjects.Entities.Kabinet.Where(p => p.ID_Kabinet == KABINET.ID_Kabinet).Count() == 0)
             {
                 DBobjects.Entities.Kabinet.Add(KABINET);
             }
@@ -36,7 +36,7 @@ namespace Timetable
         }
         private void Remove()
         {
-            if (DBobjects.Entities.Kabinet.Where(p => p.ID_K == KABINET.ID_K).Count() > 0)
+            if (DBobjects.Entities.Kabinet.Where(p => p.ID_Kabinet == KABINET.ID_Kabinet).Count() > 0)
             {
                 DBobjects.Entities.Kabinet.Remove(KABINET);
                 DBobjects.Entities.SaveChanges();

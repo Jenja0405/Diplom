@@ -21,12 +21,12 @@ namespace Timetable
         {
             Raspisaniedata.DataSource = DBobjects.Entities.Urok.ToList();
             Raspisaniedata.Columns[0].Visible = false;
+            Raspisaniedata.Columns[1].Visible = false;
+            Raspisaniedata.Columns[2].Visible = false;
             Raspisaniedata.Columns[3].Visible = false;
             Raspisaniedata.Columns[4].Visible = false;
-            Raspisaniedata.Columns[5].Visible = false;
-            Raspisaniedata.Columns[6].Visible = false;
-            Raspisaniedata.Columns[1].HeaderText = "День недели";
-            Raspisaniedata.Columns[2].HeaderText = "Номер урока";
+            Raspisaniedata.Columns[5].HeaderText = "День недели";
+            Raspisaniedata.Columns[6].HeaderText = "Номер урока";
             Raspisaniedata.Columns[7].HeaderText = "Кабинет";
             Raspisaniedata.Columns[8].HeaderText = "Класс";
             Raspisaniedata.Columns[9].HeaderText = "Предмет";
@@ -55,12 +55,6 @@ namespace Timetable
         {
             PredmetForma predmet = new PredmetForma();
             predmet.ShowDialog();
-        }
-
-        private void составлениеToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SostavlenieRaspisanijaForma sostavlenie = new SostavlenieRaspisanijaForma();
-            sostavlenie.ShowDialog();
         }
     }
     }

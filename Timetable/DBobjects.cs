@@ -8,6 +8,6 @@ namespace Timetable
 {
     public static class DBobjects
     {
-        public static DiplomEntities Entities { get; } = new DiplomEntities();
+        public static MyEntities Entities { get; } = new MyEntities();
     }
 }

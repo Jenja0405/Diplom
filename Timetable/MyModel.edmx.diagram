@@ -4,16 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4e77f522551f4ea6805a421e5c68c427" Name="Diagram1">
-        <EntityTypeShape EntityType="DiplomModel.Kabinet" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiplomModel.Klass" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiplomModel.Predmet" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiplomModel.Uchitel" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiplomModel.Urok" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="DiplomModel.FK__Urok__ID_K__300424B4" ManuallyRouted="false" />
-        <AssociationConnector Association="DiplomModel.FK__Urok__ID_Klass__2E1BDC42" ManuallyRouted="false" />
-        <AssociationConnector Association="DiplomModel.FK__Urok__ID_Predmet__30F848ED" ManuallyRouted="false" />
-        <AssociationConnector Association="DiplomModel.FK__Urok__ID_Uchitel__2F10007B" ManuallyRouted="false" />
+      <Diagram DiagramId="48464f08a4204e7292591f9b45f94fd7" Name="Diagram1">
+        <EntityTypeShape EntityType="Timetable.Model.Kabinet" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Timetable.Model.Klass" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Timetable.Model.KlassPredmet" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Timetable.Model.Predmet" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Timetable.Model.Uchitel" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Timetable.Model.Urok" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="Timetable.Model.FK__Urok__ID_Kabinet__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable.Model.FK__KlassPred__ID_Kl__1367E606" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable.Model.FK__Urok__ID_Klass__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable.Model.FK__KlassPred__ID_Pr__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable.Model.FK__Urok__ID_Predmet__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable.Model.FK__Urok__ID_Uchitel__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable.Model.KabinetPredmet" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable.Model.UchitelKlassPredmet" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
