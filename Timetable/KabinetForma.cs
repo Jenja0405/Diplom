@@ -22,7 +22,7 @@ namespace Timetable
             dataGridViewKabinet.DataSource = DBobjects.Entities.Kabinet.ToList();
             dataGridViewKabinet.Columns[0].Visible = false;
             dataGridViewKabinet.Columns[1].HeaderText = "Кабинет";
-            dataGridViewKabinet.Columns[2].Visible = false;
+            dataGridViewKabinet.Columns[2].Visible = false ;
 
         }
         

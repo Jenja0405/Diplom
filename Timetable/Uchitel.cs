@@ -17,8 +17,8 @@ namespace Timetable
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Uchitel()
         {
+            this.UchitelKlassPredmet = new HashSet<UchitelKlassPredmet>();
             this.Urok = new HashSet<Urok>();
-            this.KlassPredmet = new HashSet<KlassPredmet>();
         }
     
         public int ID_Uchitel { get; set; }
@@ -27,9 +27,9 @@ namespace Timetable
         public string Otchestvo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Urok> Urok { get; set; }
+        public virtual ICollection<UchitelKlassPredmet> UchitelKlassPredmet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KlassPredmet> KlassPredmet { get; set; }
-        public override string ToString() => Familia +" "+ Imya + " " + Otchestvo;
+        public virtual ICollection<Urok> Urok { get; set; }
+        public override string ToString() => Familia + " " + Imya + " " + Otchestvo;
     }
 }

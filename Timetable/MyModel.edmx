@@ -12,13 +12,11 @@
           <Property Name="ID_Kabinet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nazvanie_K" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "Timetable..dbo.KabinetPredmet" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="KabinetPredmet">
           <Key>
-            <PropertyRef Name="ID_Kabinet" />
-            <PropertyRef Name="ID_Predmet" />
+            <PropertyRef Name="ID_KabinetPredmet" />
           </Key>
+          <Property Name="ID_KabinetPredmet" Type="int" Nullable="false" />
           <Property Name="ID_Kabinet" Type="int" Nullable="false" />
           <Property Name="ID_Predmet" Type="int" Nullable="false" />
         </EntityType>
@@ -54,13 +52,11 @@
           <Property Name="Imya" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Otchestvo" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "Timetable..dbo.UchitelKlassPredmet" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="UchitelKlassPredmet">
           <Key>
-            <PropertyRef Name="ID_Uchitel" />
-            <PropertyRef Name="ID_KlassPredmet" />
+            <PropertyRef Name="ID_UchitelKlassPredmet" />
           </Key>
+          <Property Name="ID_UchitelKlassPredmet" Type="int" Nullable="false" />
           <Property Name="ID_Uchitel" Type="int" Nullable="false" />
           <Property Name="ID_KlassPredmet" Type="int" Nullable="false" />
         </EntityType>
@@ -198,23 +194,13 @@
         </Association>
         <EntityContainer Name="Хранилище TimetableModelContainer">
           <EntitySet Name="Kabinet" EntityType="Self.Kabinet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KabinetPredmet" EntityType="Self.KabinetPredmet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Klass" EntityType="Self.Klass" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KlassPredmet" EntityType="Self.KlassPredmet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Predmet" EntityType="Self.Predmet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Uchitel" EntityType="Self.Uchitel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UchitelKlassPredmet" EntityType="Self.UchitelKlassPredmet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Urok" EntityType="Self.Urok" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="KabinetPredmet" EntityType="Self.KabinetPredmet" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [KabinetPredmet].[ID_Kabinet] AS [ID_Kabinet], 
-    [KabinetPredmet].[ID_Predmet] AS [ID_Predmet]
-    FROM [dbo].[KabinetPredmet] AS [KabinetPredmet]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="UchitelKlassPredmet" EntityType="Self.UchitelKlassPredmet" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [UchitelKlassPredmet].[ID_Uchitel] AS [ID_Uchitel], 
-    [UchitelKlassPredmet].[ID_KlassPredmet] AS [ID_KlassPredmet]
-    FROM [dbo].[UchitelKlassPredmet] AS [UchitelKlassPredmet]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__KabinetPr__ID_Ka__0DAF0CB0" Association="Self.FK__KabinetPr__ID_Ka__0DAF0CB0">
             <End Role="Kabinet" EntitySet="Kabinet" />
             <End Role="KabinetPredmet" EntitySet="KabinetPredmet" />
@@ -267,8 +253,18 @@
           </Key>
           <Property Name="ID_Kabinet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nazvanie_K" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="KabinetPredmet" Relationship="Self.FK__KabinetPr__ID_Ka__0DAF0CB0" FromRole="Kabinet" ToRole="KabinetPredmet" />
           <NavigationProperty Name="Urok" Relationship="Self.FK__Urok__ID_Kabinet__1ED998B2" FromRole="Kabinet" ToRole="Urok" />
-          <NavigationProperty Name="Predmet" Relationship="Self.KabinetPredmet" FromRole="Kabinet" ToRole="Predmet" />
+        </EntityType>
+        <EntityType Name="KabinetPredmet">
+          <Key>
+            <PropertyRef Name="ID_KabinetPredmet" />
+          </Key>
+          <Property Name="ID_KabinetPredmet" Type="Int32" Nullable="false" />
+          <Property Name="ID_Kabinet" Type="Int32" Nullable="false" />
+          <Property Name="ID_Predmet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kabinet" Relationship="Self.FK__KabinetPr__ID_Ka__0DAF0CB0" FromRole="KabinetPredmet" ToRole="Kabinet" />
+          <NavigationProperty Name="Predmet" Relationship="Self.FK__KabinetPr__ID_Pr__0EA330E9" FromRole="KabinetPredmet" ToRole="Predmet" />
         </EntityType>
         <EntityType Name="Klass">
           <Key>
@@ -289,7 +285,7 @@
           <Property Name="UrokovVNedelyu" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Klass" Relationship="Self.FK__KlassPred__ID_Kl__1367E606" FromRole="KlassPredmet" ToRole="Klass" />
           <NavigationProperty Name="Predmet" Relationship="Self.FK__KlassPred__ID_Pr__145C0A3F" FromRole="KlassPredmet" ToRole="Predmet" />
-          <NavigationProperty Name="Uchitel" Relationship="Self.UchitelKlassPredmet" FromRole="KlassPredmet" ToRole="Uchitel" />
+          <NavigationProperty Name="UchitelKlassPredmet" Relationship="Self.FK__UchitelKl__ID_Kl__173876EA" FromRole="KlassPredmet" ToRole="UchitelKlassPredmet" />
         </EntityType>
         <EntityType Name="Predmet">
           <Key>
@@ -297,9 +293,9 @@
           </Key>
           <Property Name="ID_Predmet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nazvanie_P" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="KabinetPredmet" Relationship="Self.FK__KabinetPr__ID_Pr__0EA330E9" FromRole="Predmet" ToRole="KabinetPredmet" />
           <NavigationProperty Name="KlassPredmet" Relationship="Self.FK__KlassPred__ID_Pr__145C0A3F" FromRole="Predmet" ToRole="KlassPredmet" />
           <NavigationProperty Name="Urok" Relationship="Self.FK__Urok__ID_Predmet__1BFD2C07" FromRole="Predmet" ToRole="Urok" />
-          <NavigationProperty Name="Kabinet" Relationship="Self.KabinetPredmet" FromRole="Predmet" ToRole="Kabinet" />
         </EntityType>
         <EntityType Name="Uchitel">
           <Key>
@@ -309,8 +305,18 @@
           <Property Name="Familia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Imya" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Otchestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UchitelKlassPredmet" Relationship="Self.FK__UchitelKl__ID_Uc__164452B1" FromRole="Uchitel" ToRole="UchitelKlassPredmet" />
           <NavigationProperty Name="Urok" Relationship="Self.FK__Urok__ID_Uchitel__1DE57479" FromRole="Uchitel" ToRole="Urok" />
-          <NavigationProperty Name="KlassPredmet" Relationship="Self.UchitelKlassPredmet" FromRole="Uchitel" ToRole="KlassPredmet" />
+        </EntityType>
+        <EntityType Name="UchitelKlassPredmet">
+          <Key>
+            <PropertyRef Name="ID_UchitelKlassPredmet" />
+          </Key>
+          <Property Name="ID_UchitelKlassPredmet" Type="Int32" Nullable="false" />
+          <Property Name="ID_Uchitel" Type="Int32" Nullable="false" />
+          <Property Name="ID_KlassPredmet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="KlassPredmet" Relationship="Self.FK__UchitelKl__ID_Kl__173876EA" FromRole="UchitelKlassPredmet" ToRole="KlassPredmet" />
+          <NavigationProperty Name="Uchitel" Relationship="Self.FK__UchitelKl__ID_Uc__164452B1" FromRole="UchitelKlassPredmet" ToRole="Uchitel" />
         </EntityType>
         <EntityType Name="Urok">
           <Key>
@@ -328,6 +334,18 @@
           <NavigationProperty Name="Predmet" Relationship="Self.FK__Urok__ID_Predmet__1BFD2C07" FromRole="Urok" ToRole="Predmet" />
           <NavigationProperty Name="Uchitel" Relationship="Self.FK__Urok__ID_Uchitel__1DE57479" FromRole="Urok" ToRole="Uchitel" />
         </EntityType>
+        <Association Name="FK__KabinetPr__ID_Ka__0DAF0CB0">
+          <End Role="Kabinet" Type="Self.Kabinet" Multiplicity="1" />
+          <End Role="KabinetPredmet" Type="Self.KabinetPredmet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kabinet">
+              <PropertyRef Name="ID_Kabinet" />
+            </Principal>
+            <Dependent Role="KabinetPredmet">
+              <PropertyRef Name="ID_Kabinet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Urok__ID_Kabinet__1ED998B2">
           <End Role="Kabinet" Type="Self.Kabinet" Multiplicity="1" />
           <End Role="Urok" Type="Self.Urok" Multiplicity="*" />
@@ -337,6 +355,18 @@
             </Principal>
             <Dependent Role="Urok">
               <PropertyRef Name="ID_Kabinet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KabinetPr__ID_Pr__0EA330E9">
+          <End Role="Predmet" Type="Self.Predmet" Multiplicity="1" />
+          <End Role="KabinetPredmet" Type="Self.KabinetPredmet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Predmet">
+              <PropertyRef Name="ID_Predmet" />
+            </Principal>
+            <Dependent Role="KabinetPredmet">
+              <PropertyRef Name="ID_Predmet" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -376,6 +406,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__UchitelKl__ID_Kl__173876EA">
+          <End Role="KlassPredmet" Type="Self.KlassPredmet" Multiplicity="1" />
+          <End Role="UchitelKlassPredmet" Type="Self.UchitelKlassPredmet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KlassPredmet">
+              <PropertyRef Name="ID_KlassPredmet" />
+            </Principal>
+            <Dependent Role="UchitelKlassPredmet">
+              <PropertyRef Name="ID_KlassPredmet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Urok__ID_Predmet__1BFD2C07">
           <End Role="Predmet" Type="Self.Predmet" Multiplicity="1" />
           <End Role="Urok" Type="Self.Urok" Multiplicity="*" />
@@ -385,6 +427,18 @@
             </Principal>
             <Dependent Role="Urok">
               <PropertyRef Name="ID_Predmet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UchitelKl__ID_Uc__164452B1">
+          <End Role="Uchitel" Type="Self.Uchitel" Multiplicity="1" />
+          <End Role="UchitelKlassPredmet" Type="Self.UchitelKlassPredmet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uchitel">
+              <PropertyRef Name="ID_Uchitel" />
+            </Principal>
+            <Dependent Role="UchitelKlassPredmet">
+              <PropertyRef Name="ID_Uchitel" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -400,24 +454,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="KabinetPredmet">
-          <End Role="Kabinet" Type="Self.Kabinet" Multiplicity="*" />
-          <End Role="Predmet" Type="Self.Predmet" Multiplicity="*" />
-        </Association>
-        <Association Name="UchitelKlassPredmet">
-          <End Role="KlassPredmet" Type="Self.KlassPredmet" Multiplicity="*" />
-          <End Role="Uchitel" Type="Self.Uchitel" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="MyEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Kabinet" EntityType="Self.Kabinet" />
+          <EntitySet Name="KabinetPredmet" EntityType="Self.KabinetPredmet" />
           <EntitySet Name="Klass" EntityType="Self.Klass" />
           <EntitySet Name="KlassPredmet" EntityType="Self.KlassPredmet" />
           <EntitySet Name="Predmet" EntityType="Self.Predmet" />
           <EntitySet Name="Uchitel" EntityType="Self.Uchitel" />
+          <EntitySet Name="UchitelKlassPredmet" EntityType="Self.UchitelKlassPredmet" />
           <EntitySet Name="Urok" EntityType="Self.Urok" />
+          <AssociationSet Name="FK__KabinetPr__ID_Ka__0DAF0CB0" Association="Self.FK__KabinetPr__ID_Ka__0DAF0CB0">
+            <End Role="Kabinet" EntitySet="Kabinet" />
+            <End Role="KabinetPredmet" EntitySet="KabinetPredmet" />
+          </AssociationSet>
           <AssociationSet Name="FK__Urok__ID_Kabinet__1ED998B2" Association="Self.FK__Urok__ID_Kabinet__1ED998B2">
             <End Role="Kabinet" EntitySet="Kabinet" />
             <End Role="Urok" EntitySet="Urok" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KabinetPr__ID_Pr__0EA330E9" Association="Self.FK__KabinetPr__ID_Pr__0EA330E9">
+            <End Role="Predmet" EntitySet="Predmet" />
+            <End Role="KabinetPredmet" EntitySet="KabinetPredmet" />
           </AssociationSet>
           <AssociationSet Name="FK__KlassPred__ID_Kl__1367E606" Association="Self.FK__KlassPred__ID_Kl__1367E606">
             <End Role="Klass" EntitySet="Klass" />
@@ -431,21 +487,21 @@
             <End Role="Predmet" EntitySet="Predmet" />
             <End Role="KlassPredmet" EntitySet="KlassPredmet" />
           </AssociationSet>
+          <AssociationSet Name="FK__UchitelKl__ID_Kl__173876EA" Association="Self.FK__UchitelKl__ID_Kl__173876EA">
+            <End Role="KlassPredmet" EntitySet="KlassPredmet" />
+            <End Role="UchitelKlassPredmet" EntitySet="UchitelKlassPredmet" />
+          </AssociationSet>
           <AssociationSet Name="FK__Urok__ID_Predmet__1BFD2C07" Association="Self.FK__Urok__ID_Predmet__1BFD2C07">
             <End Role="Predmet" EntitySet="Predmet" />
             <End Role="Urok" EntitySet="Urok" />
           </AssociationSet>
+          <AssociationSet Name="FK__UchitelKl__ID_Uc__164452B1" Association="Self.FK__UchitelKl__ID_Uc__164452B1">
+            <End Role="Uchitel" EntitySet="Uchitel" />
+            <End Role="UchitelKlassPredmet" EntitySet="UchitelKlassPredmet" />
+          </AssociationSet>
           <AssociationSet Name="FK__Urok__ID_Uchitel__1DE57479" Association="Self.FK__Urok__ID_Uchitel__1DE57479">
             <End Role="Uchitel" EntitySet="Uchitel" />
             <End Role="Urok" EntitySet="Urok" />
-          </AssociationSet>
-          <AssociationSet Name="KabinetPredmet" Association="Self.KabinetPredmet">
-            <End Role="Kabinet" EntitySet="Kabinet" />
-            <End Role="Predmet" EntitySet="Predmet" />
-          </AssociationSet>
-          <AssociationSet Name="UchitelKlassPredmet" Association="Self.UchitelKlassPredmet">
-            <End Role="KlassPredmet" EntitySet="KlassPredmet" />
-            <End Role="Uchitel" EntitySet="Uchitel" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -459,6 +515,15 @@
               <MappingFragment StoreEntitySet="Kabinet">
                 <ScalarProperty Name="ID_Kabinet" ColumnName="ID_Kabinet" />
                 <ScalarProperty Name="Nazvanie_K" ColumnName="Nazvanie_K" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KabinetPredmet">
+            <EntityTypeMapping TypeName="Timetable.Model.KabinetPredmet">
+              <MappingFragment StoreEntitySet="KabinetPredmet">
+                <ScalarProperty Name="ID_KabinetPredmet" ColumnName="ID_KabinetPredmet" />
+                <ScalarProperty Name="ID_Kabinet" ColumnName="ID_Kabinet" />
+                <ScalarProperty Name="ID_Predmet" ColumnName="ID_Predmet" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -498,6 +563,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UchitelKlassPredmet">
+            <EntityTypeMapping TypeName="Timetable.Model.UchitelKlassPredmet">
+              <MappingFragment StoreEntitySet="UchitelKlassPredmet">
+                <ScalarProperty Name="ID_UchitelKlassPredmet" ColumnName="ID_UchitelKlassPredmet" />
+                <ScalarProperty Name="ID_Uchitel" ColumnName="ID_Uchitel" />
+                <ScalarProperty Name="ID_KlassPredmet" ColumnName="ID_KlassPredmet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Urok">
             <EntityTypeMapping TypeName="Timetable.Model.Urok">
               <MappingFragment StoreEntitySet="Urok">
@@ -511,22 +585,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="KabinetPredmet" TypeName="Timetable.Model.KabinetPredmet" StoreEntitySet="KabinetPredmet">
-            <EndProperty Name="Kabinet">
-              <ScalarProperty Name="ID_Kabinet" ColumnName="ID_Kabinet" />
-            </EndProperty>
-            <EndProperty Name="Predmet">
-              <ScalarProperty Name="ID_Predmet" ColumnName="ID_Predmet" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="UchitelKlassPredmet" TypeName="Timetable.Model.UchitelKlassPredmet" StoreEntitySet="UchitelKlassPredmet">
-            <EndProperty Name="KlassPredmet">
-              <ScalarProperty Name="ID_KlassPredmet" ColumnName="ID_KlassPredmet" />
-            </EndProperty>
-            <EndProperty Name="Uchitel">
-              <ScalarProperty Name="ID_Uchitel" ColumnName="ID_Uchitel" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

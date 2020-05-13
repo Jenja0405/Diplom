@@ -56,6 +56,18 @@ namespace Timetable
             PredmetForma predmet = new PredmetForma();
             predmet.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<Klass> Klass= DBobjects.Entities.Klass.ToList();
+             List<Predmet> Predmet = DBobjects.Entities.Predmet.ToList();
+             List<Uchitel> Uchitel = DBobjects.Entities.Uchitel.ToList();
+             List<Kabinet> Kabinet = DBobjects.Entities.Kabinet.ToList();
+             List<string> Weekday = new List<string>() {"Понедельник", "Вторник", "Среда", "Четверг", "Пятница"};
+             List<string> NomerUroka = new List<string>() { "1", "2", "3", "4", "5","6","7"};
+            List<Urok> Urok = DBobjects.Entities.Urok.ToList();
+            Scheduling.Sapolnenie(Klass, Predmet, Uchitel, Kabinet, Weekday, NomerUroka, Urok);
+        }
     }
     }
 

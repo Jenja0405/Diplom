@@ -26,10 +26,12 @@ namespace Timetable
         }
     
         public virtual DbSet<Kabinet> Kabinet { get; set; }
+        public virtual DbSet<KabinetPredmet> KabinetPredmet { get; set; }
         public virtual DbSet<Klass> Klass { get; set; }
         public virtual DbSet<KlassPredmet> KlassPredmet { get; set; }
         public virtual DbSet<Predmet> Predmet { get; set; }
         public virtual DbSet<Uchitel> Uchitel { get; set; }
+        public virtual DbSet<UchitelKlassPredmet> UchitelKlassPredmet { get; set; }
         public virtual DbSet<Urok> Urok { get; set; }
     }
 }

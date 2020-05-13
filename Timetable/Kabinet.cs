@@ -17,17 +17,17 @@ namespace Timetable
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Kabinet()
         {
+            this.KabinetPredmet = new HashSet<KabinetPredmet>();
             this.Urok = new HashSet<Urok>();
-            this.Predmet = new HashSet<Predmet>();
         }
     
         public int ID_Kabinet { get; set; }
         public string Nazvanie_K { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Urok> Urok { get; set; }
+        public virtual ICollection<KabinetPredmet> KabinetPredmet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Predmet> Predmet { get; set; }
+        public virtual ICollection<Urok> Urok { get; set; }
         public override string ToString() => Nazvanie_K;
     }
 }

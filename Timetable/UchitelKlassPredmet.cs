@@ -12,22 +12,13 @@ namespace Timetable
     using System;
     using System.Collections.Generic;
     
-    public partial class KlassPredmet
+    public partial class UchitelKlassPredmet
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KlassPredmet()
-        {
-            this.UchitelKlassPredmet = new HashSet<UchitelKlassPredmet>();
-        }
-    
+        public int ID_UchitelKlassPredmet { get; set; }
+        public int ID_Uchitel { get; set; }
         public int ID_KlassPredmet { get; set; }
-        public int ID_Klass { get; set; }
-        public int ID_Predmet { get; set; }
-        public short UrokovVNedelyu { get; set; }
     
-        public virtual Klass Klass { get; set; }
-        public virtual Predmet Predmet { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UchitelKlassPredmet> UchitelKlassPredmet { get; set; }
+        public virtual KlassPredmet KlassPredmet { get; set; }
+        public virtual Uchitel Uchitel { get; set; }
     }
 }

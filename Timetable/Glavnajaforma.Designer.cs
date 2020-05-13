@@ -38,6 +38,7 @@
             this.кабинетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.предметыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.составлениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Raspisaniedata)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -125,11 +126,22 @@
             this.составлениеToolStripMenuItem.Name = "составлениеToolStripMenuItem";
             this.составлениеToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(665, 43);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Glavnajaforma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 365);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.LabelSostavlenieraspisanie);
             this.Controls.Add(this.Raspisaniedata);
             this.Controls.Add(this.menuStrip1);
@@ -154,6 +166,7 @@
         private System.Windows.Forms.ToolStripMenuItem кабинетыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem предметыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem составлениеToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }
 
