@@ -45,6 +45,7 @@
             // 
             // dataGridViewucshitel
             // 
+            this.dataGridViewucshitel.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewucshitel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewucshitel.Location = new System.Drawing.Point(22, 22);
             this.dataGridViewucshitel.Name = "dataGridViewucshitel";

@@ -35,6 +35,7 @@
             // 
             // dataGridViewKlass
             // 
+            this.dataGridViewKlass.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewKlass.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewKlass.Location = new System.Drawing.Point(25, 12);
             this.dataGridViewKlass.Name = "dataGridViewKlass";

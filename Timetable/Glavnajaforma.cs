@@ -15,10 +15,70 @@ namespace Timetable
         public Glavnajaforma()
         {
             InitializeComponent();
-            Fill();
+         
         }
         private void Fill()
         {
+            List<Klass> Klass = DBobjects.Entities.Klass.ToList();
+            List<Predmet> Predmet = DBobjects.Entities.Predmet.ToList();
+            List<Uchitel> Uchitel = DBobjects.Entities.Uchitel.ToList();
+            List<Kabinet> Kabinet = DBobjects.Entities.Kabinet.ToList();
+            List<string> Weekday = new List<string>() { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница" };
+            List<int> NomerUroka = new List<int>() { 1, 2, 3, 4, 5, 6 };
+            List<Urok> Urok = DBobjects.Entities.Urok.ToList();
+
+            foreach (Klass k in Klass)
+            {
+                foreach (Predmet pr in Predmet)
+                {
+                    if (DBobjects.Entities.KlassPredmet.Where(q => q.ID_Klass == k.ID_Klass && q.ID_Predmet == pr.ID_Predmet).Count() > 0)
+                    {
+                        foreach (Kabinet kab in Kabinet)
+                        {
+                            if (DBobjects.Entities.KabinetPredmet.Where(a => a.ID_Kabinet == kab.ID_Kabinet && a.ID_Predmet == pr.ID_Predmet).Count() > 0)
+                            {
+                                foreach (Uchitel uc in Uchitel)
+                                {
+                                    if (DBobjects.Entities.UchitelKlassPredmet.Where(z => z.KlassPredmet.ID_Predmet == pr.ID_Predmet && z.ID_Uchitel == uc.ID_Uchitel).Count() > 0)
+                                    {
+                                        foreach (string w in Weekday)
+                                        {
+                                            if (Urok.Where(l => l.ID_Klass == k.ID_Klass && l.ID_Predmet == pr.ID_Predmet).Count() < pr.KlassPredmet.FirstOrDefault(f => f.ID_Predmet == pr.ID_Predmet && f.ID_Klass == k.ID_Klass).UrokovVNedelyu)
+                                            {
+                                                foreach (int nomer in NomerUroka)
+                                                {
+                                                    if (Urok.Where(v => v.Weekday == w && v.ID_Klass == k.ID_Klass && v.ID_Predmet == pr.ID_Predmet).Count() < 3)
+                                                    {
+                                                        Urok ur = new Urok();
+
+                                                        if (Urok.Where(h => h.Nomer_uroka == nomer && h.Weekday == w).Count() == 0)
+
+                                                        {
+                                                            ur.ID_Uchitel = uc.ID_Uchitel;
+                                                            ur.ID_Predmet = pr.ID_Predmet;
+                                                            ur.ID_Kabinet = kab.ID_Kabinet;
+                                                            ur.ID_Klass = k.ID_Klass;
+                                                            ur.Weekday = w;
+                                                            ur.Nomer_uroka = nomer;
+                                                            Urok.Add(ur);
+                                                            DBobjects.Entities.Urok.Add(ur);
+                                                            DBobjects.Entities.SaveChanges();
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+            }
             Raspisaniedata.DataSource = DBobjects.Entities.Urok.ToList();
             Raspisaniedata.Columns[0].Visible = false;
             Raspisaniedata.Columns[1].Visible = false;
@@ -31,8 +91,8 @@ namespace Timetable
             Raspisaniedata.Columns[8].HeaderText = "Класс";
             Raspisaniedata.Columns[9].HeaderText = "Предмет";
             Raspisaniedata.Columns[10].HeaderText = "Учитель";
-        }
 
+        }
         private void учителяToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UschitelaForma uchitel = new UschitelaForma();
@@ -57,18 +117,13 @@ namespace Timetable
             predmet.ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SgenerirovatMenu_Click(object sender, EventArgs e)
         {
-            List<Klass> Klass= DBobjects.Entities.Klass.ToList();
-             List<Predmet> Predmet = DBobjects.Entities.Predmet.ToList();
-             List<Uchitel> Uchitel = DBobjects.Entities.Uchitel.ToList();
-             List<Kabinet> Kabinet = DBobjects.Entities.Kabinet.ToList();
-             List<string> Weekday = new List<string>() {"Понедельник", "Вторник", "Среда", "Четверг", "Пятница"};
-             List<int> NomerUroka = new List<int>() { 1,2,3,4,5,6,7};
-            List<Urok> Urok = DBobjects.Entities.Urok.ToList();
-            MessageBox.Show("начало");
-            Raspisaniedata.DataSource = Scheduling.Sapolnenie(Klass, Predmet, Uchitel, Kabinet, Weekday, NomerUroka, Urok);
-            MessageBox.Show("конец");
+            DBobjects.Entities.Clear();
+            Fill();
+            Raspisaniedata.Visible = true;
+            
+
         }
     }
     }

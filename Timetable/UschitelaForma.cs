@@ -25,6 +25,7 @@ namespace Timetable
             dataGridViewucshitel.Columns[2].HeaderText = "Имя";
             dataGridViewucshitel.Columns[3].HeaderText = "Отчество";
             dataGridViewucshitel.Columns[4].Visible = false;
+            dataGridViewucshitel.Columns[5].Visible = false;
         }
 
 

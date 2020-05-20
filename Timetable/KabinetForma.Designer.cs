@@ -45,6 +45,7 @@
             // 
             // dataGridViewKabinet
             // 
+            this.dataGridViewKabinet.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewKabinet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewKabinet.Location = new System.Drawing.Point(42, 12);
             this.dataGridViewKabinet.Name = "dataGridViewKabinet";

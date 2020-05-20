@@ -45,6 +45,7 @@
             // 
             // dataGridViewPredmet
             // 
+            this.dataGridViewPredmet.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewPredmet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPredmet.Location = new System.Drawing.Point(29, 12);
             this.dataGridViewPredmet.Name = "dataGridViewPredmet";
@@ -56,7 +57,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(193, 261);
+            this.ClientSize = new System.Drawing.Size(188, 219);
             this.Controls.Add(this.DobavPredmet);
             this.Controls.Add(this.dataGridViewPredmet);
             this.Name = "PredmetForma";

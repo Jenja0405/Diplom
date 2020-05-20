@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Raspisaniedata = new System.Windows.Forms.DataGridView();
             this.LabelSostavlenieraspisanie = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -38,27 +38,28 @@
             this.кабинетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.предметыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.составлениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
+            this.SgenerirovatMenu = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.Raspisaniedata)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Raspisaniedata
             // 
-            this.Raspisaniedata.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.Raspisaniedata.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.Raspisaniedata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Raspisaniedata.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Raspisaniedata.Location = new System.Drawing.Point(12, 72);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Raspisaniedata.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Raspisaniedata.Location = new System.Drawing.Point(39, 72);
             this.Raspisaniedata.Name = "Raspisaniedata";
-            this.Raspisaniedata.Size = new System.Drawing.Size(752, 281);
+            this.Raspisaniedata.Size = new System.Drawing.Size(636, 281);
             this.Raspisaniedata.TabIndex = 1;
+            this.Raspisaniedata.Visible = false;
             // 
             // LabelSostavlenieraspisanie
             // 
@@ -74,11 +75,12 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SgenerirovatMenu,
             this.менюToolStripMenuItem,
             this.составлениеToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(777, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(706, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -90,8 +92,8 @@
             this.кабинетыToolStripMenuItem,
             this.предметыToolStripMenuItem});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
-            this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.менюToolStripMenuItem.Text = "Меню";
+            this.менюToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
+            this.менюToolStripMenuItem.Text = "Справочники";
             // 
             // классыToolStripMenuItem
             // 
@@ -126,22 +128,18 @@
             this.составлениеToolStripMenuItem.Name = "составлениеToolStripMenuItem";
             this.составлениеToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
             // 
-            // button1
+            // SgenerirovatMenu
             // 
-            this.button1.Location = new System.Drawing.Point(665, 43);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.SgenerirovatMenu.Name = "SgenerirovatMenu";
+            this.SgenerirovatMenu.Size = new System.Drawing.Size(102, 20);
+            this.SgenerirovatMenu.Text = "Сгенерировать";
+            this.SgenerirovatMenu.Click += new System.EventHandler(this.SgenerirovatMenu_Click);
             // 
             // Glavnajaforma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(777, 365);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(706, 365);
             this.Controls.Add(this.LabelSostavlenieraspisanie);
             this.Controls.Add(this.Raspisaniedata);
             this.Controls.Add(this.menuStrip1);
@@ -166,7 +164,7 @@
         private System.Windows.Forms.ToolStripMenuItem кабинетыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem предметыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem составлениеToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem SgenerirovatMenu;
     }
 }
 

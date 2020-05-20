@@ -23,6 +23,7 @@ namespace Timetable
             dataGridViewKlass.Columns[0].Visible = false;
             dataGridViewKlass.Columns[1].HeaderText = "Класс";
             dataGridViewKlass.Columns[2].Visible = false;
+            dataGridViewKlass.Columns[3].Visible = false;
 
         }
 
