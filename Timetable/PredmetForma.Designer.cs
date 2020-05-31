@@ -45,7 +45,7 @@
             // 
             // dataGridViewPredmet
             // 
-            this.dataGridViewPredmet.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewPredmet.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewPredmet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPredmet.Location = new System.Drawing.Point(29, 12);
             this.dataGridViewPredmet.Name = "dataGridViewPredmet";

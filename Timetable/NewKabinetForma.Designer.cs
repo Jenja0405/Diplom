@@ -32,11 +32,13 @@
             this.RemovKabinet = new System.Windows.Forms.Button();
             this.textBoxKabinet = new System.Windows.Forms.TextBox();
             this.KabinetLabel = new System.Windows.Forms.Label();
+            this.dataGridViewPredmet = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPredmet)).BeginInit();
             this.SuspendLayout();
             // 
             // SaveKabinet
             // 
-            this.SaveKabinet.Location = new System.Drawing.Point(33, 68);
+            this.SaveKabinet.Location = new System.Drawing.Point(33, 309);
             this.SaveKabinet.Name = "SaveKabinet";
             this.SaveKabinet.Size = new System.Drawing.Size(75, 23);
             this.SaveKabinet.TabIndex = 20;
@@ -46,7 +48,7 @@
             // 
             // RemovKabinet
             // 
-            this.RemovKabinet.Location = new System.Drawing.Point(172, 68);
+            this.RemovKabinet.Location = new System.Drawing.Point(172, 309);
             this.RemovKabinet.Name = "RemovKabinet";
             this.RemovKabinet.Size = new System.Drawing.Size(75, 23);
             this.RemovKabinet.TabIndex = 21;
@@ -71,17 +73,31 @@
             this.KabinetLabel.TabIndex = 18;
             this.KabinetLabel.Text = "Кабинет";
             // 
+            // dataGridViewPredmet
+            // 
+            this.dataGridViewPredmet.AllowUserToAddRows = false;
+            this.dataGridViewPredmet.AllowUserToDeleteRows = false;
+            this.dataGridViewPredmet.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewPredmet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPredmet.Location = new System.Drawing.Point(33, 62);
+            this.dataGridViewPredmet.Name = "dataGridViewPredmet";
+            this.dataGridViewPredmet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewPredmet.Size = new System.Drawing.Size(214, 227);
+            this.dataGridViewPredmet.TabIndex = 22;
+            // 
             // NewKabinetForma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 111);
+            this.ClientSize = new System.Drawing.Size(287, 340);
+            this.Controls.Add(this.dataGridViewPredmet);
             this.Controls.Add(this.SaveKabinet);
             this.Controls.Add(this.RemovKabinet);
             this.Controls.Add(this.textBoxKabinet);
             this.Controls.Add(this.KabinetLabel);
             this.Name = "NewKabinetForma";
             this.Text = "Кабинеты";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPredmet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,5 +109,6 @@
         private System.Windows.Forms.Button RemovKabinet;
         private System.Windows.Forms.TextBox textBoxKabinet;
         private System.Windows.Forms.Label KabinetLabel;
+        private System.Windows.Forms.DataGridView dataGridViewPredmet;
     }
 }

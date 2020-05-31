@@ -36,11 +36,13 @@
             this.Otchestvo = new System.Windows.Forms.Label();
             this.Imya = new System.Windows.Forms.Label();
             this.Familie = new System.Windows.Forms.Label();
+            this.dataGridViewUschitelKlass = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUschitelKlass)).BeginInit();
             this.SuspendLayout();
             // 
             // Saveuschitel
             // 
-            this.Saveuschitel.Location = new System.Drawing.Point(12, 107);
+            this.Saveuschitel.Location = new System.Drawing.Point(12, 420);
             this.Saveuschitel.Name = "Saveuschitel";
             this.Saveuschitel.Size = new System.Drawing.Size(75, 23);
             this.Saveuschitel.TabIndex = 14;
@@ -50,7 +52,7 @@
             // 
             // Removeuschitel
             // 
-            this.Removeuschitel.Location = new System.Drawing.Point(197, 107);
+            this.Removeuschitel.Location = new System.Drawing.Point(194, 420);
             this.Removeuschitel.Name = "Removeuschitel";
             this.Removeuschitel.Size = new System.Drawing.Size(75, 23);
             this.Removeuschitel.TabIndex = 15;
@@ -109,11 +111,24 @@
             this.Familie.TabIndex = 8;
             this.Familie.Text = "Фамилия";
             // 
-            // NewuschitelForma
+            // dataGridViewUschitelKlass
+            // 
+            this.dataGridViewUschitelKlass.AllowUserToAddRows = false;
+            this.dataGridViewUschitelKlass.AllowUserToDeleteRows = false;
+            this.dataGridViewUschitelKlass.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewUschitelKlass.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUschitelKlass.Location = new System.Drawing.Point(31, 106);
+            this.dataGridViewUschitelKlass.Name = "dataGridViewUschitelKlass";
+            this.dataGridViewUschitelKlass.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewUschitelKlass.Size = new System.Drawing.Size(214, 308);
+            this.dataGridViewUschitelKlass.TabIndex = 24;
+            // 
+            // NewUschitelForma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(281, 137);
+            this.ClientSize = new System.Drawing.Size(281, 455);
+            this.Controls.Add(this.dataGridViewUschitelKlass);
             this.Controls.Add(this.Saveuschitel);
             this.Controls.Add(this.Removeuschitel);
             this.Controls.Add(this.textBoxotchestvo);
@@ -122,8 +137,9 @@
             this.Controls.Add(this.Otchestvo);
             this.Controls.Add(this.Imya);
             this.Controls.Add(this.Familie);
-            this.Name = "NewuschitelForma";
+            this.Name = "NewUschitelForma";
             this.Text = "Учителя";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUschitelKlass)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,5 +155,6 @@
         private System.Windows.Forms.Label Otchestvo;
         private System.Windows.Forms.Label Imya;
         private System.Windows.Forms.Label Familie;
+        private System.Windows.Forms.DataGridView dataGridViewUschitelKlass;
     }
 }

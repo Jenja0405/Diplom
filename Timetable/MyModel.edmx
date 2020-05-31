@@ -16,7 +16,7 @@
           <Key>
             <PropertyRef Name="ID_KabinetPredmet" />
           </Key>
-          <Property Name="ID_KabinetPredmet" Type="int" Nullable="false" />
+          <Property Name="ID_KabinetPredmet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_Kabinet" Type="int" Nullable="false" />
           <Property Name="ID_Predmet" Type="int" Nullable="false" />
         </EntityType>
@@ -56,7 +56,7 @@
           <Key>
             <PropertyRef Name="ID_UchitelKlassPredmet" />
           </Key>
-          <Property Name="ID_UchitelKlassPredmet" Type="int" Nullable="false" />
+          <Property Name="ID_UchitelKlassPredmet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_Uchitel" Type="int" Nullable="false" />
           <Property Name="ID_KlassPredmet" Type="int" Nullable="false" />
         </EntityType>

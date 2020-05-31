@@ -32,6 +32,8 @@
             this.KlassLabel = new System.Windows.Forms.Label();
             this.Saveklass = new System.Windows.Forms.Button();
             this.Removklass = new System.Windows.Forms.Button();
+            this.dataGridViewKlassPredmet = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKlassPredmet)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxklass
@@ -53,7 +55,7 @@
             // 
             // Saveklass
             // 
-            this.Saveklass.Location = new System.Drawing.Point(24, 73);
+            this.Saveklass.Location = new System.Drawing.Point(24, 275);
             this.Saveklass.Name = "Saveklass";
             this.Saveklass.Size = new System.Drawing.Size(75, 23);
             this.Saveklass.TabIndex = 16;
@@ -63,7 +65,7 @@
             // 
             // Removklass
             // 
-            this.Removklass.Location = new System.Drawing.Point(163, 73);
+            this.Removklass.Location = new System.Drawing.Point(163, 275);
             this.Removklass.Name = "Removklass";
             this.Removklass.Size = new System.Drawing.Size(75, 23);
             this.Removklass.TabIndex = 17;
@@ -71,17 +73,31 @@
             this.Removklass.UseVisualStyleBackColor = true;
             this.Removklass.Click += new System.EventHandler(this.Removklass_Click);
             // 
+            // dataGridViewKlassPredmet
+            // 
+            this.dataGridViewKlassPredmet.AllowUserToAddRows = false;
+            this.dataGridViewKlassPredmet.AllowUserToDeleteRows = false;
+            this.dataGridViewKlassPredmet.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewKlassPredmet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewKlassPredmet.Location = new System.Drawing.Point(24, 69);
+            this.dataGridViewKlassPredmet.Name = "dataGridViewKlassPredmet";
+            this.dataGridViewKlassPredmet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewKlassPredmet.Size = new System.Drawing.Size(214, 200);
+            this.dataGridViewKlassPredmet.TabIndex = 23;
+            // 
             // NewKlassForma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(252, 109);
+            this.ClientSize = new System.Drawing.Size(252, 310);
+            this.Controls.Add(this.dataGridViewKlassPredmet);
             this.Controls.Add(this.Saveklass);
             this.Controls.Add(this.Removklass);
             this.Controls.Add(this.textBoxklass);
             this.Controls.Add(this.KlassLabel);
             this.Name = "NewKlassForma";
             this.Text = "Классы";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKlassPredmet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,5 +109,6 @@
         private System.Windows.Forms.Label KlassLabel;
         private System.Windows.Forms.Button Saveklass;
         private System.Windows.Forms.Button Removklass;
+        private System.Windows.Forms.DataGridView dataGridViewKlassPredmet;
     }
 }

@@ -12,10 +12,11 @@ namespace Timetable
 {
     public partial class Glavnajaforma : Form
     {
+
         public Glavnajaforma()
         {
             InitializeComponent();
-         
+            Fill1();
         }
         private void Fill()
         {
@@ -47,12 +48,12 @@ namespace Timetable
                                             {
                                                 foreach (int nomer in NomerUroka)
                                                 {
-                                                    if (Urok.Where(v => v.Weekday == w && v.ID_Klass == k.ID_Klass && v.ID_Predmet == pr.ID_Predmet).Count() < 3)
+                                                    if (Urok.Where(v => v.Weekday == w && v.ID_Klass == k.ID_Klass && v.ID_Predmet == pr.ID_Predmet).Count() < 1)
                                                     {
                                                         Urok ur = new Urok();
 
-                                                        if (Urok.Where(h => h.Nomer_uroka == nomer && h.Weekday == w).Count() == 0)
 
+                                                        if (Urok.Where(h => h.Nomer_uroka == nomer && h.Weekday == w).Count() == 0)
                                                         {
                                                             ur.ID_Uchitel = uc.ID_Uchitel;
                                                             ur.ID_Predmet = pr.ID_Predmet;
@@ -79,6 +80,9 @@ namespace Timetable
 
 
             }
+        }
+        private void Fill1()
+        {
             Raspisaniedata.DataSource = DBobjects.Entities.Urok.ToList();
             Raspisaniedata.Columns[0].Visible = false;
             Raspisaniedata.Columns[1].Visible = false;
@@ -93,6 +97,7 @@ namespace Timetable
             Raspisaniedata.Columns[10].HeaderText = "Учитель";
 
         }
+
         private void учителяToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UschitelaForma uchitel = new UschitelaForma();
@@ -104,7 +109,6 @@ namespace Timetable
             KlassForma klass = new KlassForma();
             klass.ShowDialog();
         }
-
         private void кабинетыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             KabinetForma kabinet = new KabinetForma();
@@ -119,12 +123,21 @@ namespace Timetable
 
         private void SgenerirovatMenu_Click(object sender, EventArgs e)
         {
-            DBobjects.Entities.Clear();
-            Fill();
-            Raspisaniedata.Visible = true;
-            
+            if (MessageBox.Show("Сгенерировать новое расписание?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                this.Cursor = Cursors.WaitCursor;
+                DBobjects.Entities.Clear();
+                Fill();
+                Fill1();
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        private void менюToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
         }
     }
+
     }
 
