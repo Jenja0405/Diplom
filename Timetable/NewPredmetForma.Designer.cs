@@ -32,13 +32,11 @@
             this.RemovPredmet = new System.Windows.Forms.Button();
             this.textBoxPredmet = new System.Windows.Forms.TextBox();
             this.PredmetLabel = new System.Windows.Forms.Label();
-            this.dataGridViewKlassPredmet = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKlassPredmet)).BeginInit();
             this.SuspendLayout();
             // 
             // SavePredmet
             // 
-            this.SavePredmet.Location = new System.Drawing.Point(31, 305);
+            this.SavePredmet.Location = new System.Drawing.Point(31, 64);
             this.SavePredmet.Name = "SavePredmet";
             this.SavePredmet.Size = new System.Drawing.Size(75, 23);
             this.SavePredmet.TabIndex = 24;
@@ -48,7 +46,7 @@
             // 
             // RemovPredmet
             // 
-            this.RemovPredmet.Location = new System.Drawing.Point(170, 305);
+            this.RemovPredmet.Location = new System.Drawing.Point(170, 64);
             this.RemovPredmet.Name = "RemovPredmet";
             this.RemovPredmet.Size = new System.Drawing.Size(75, 23);
             this.RemovPredmet.TabIndex = 25;
@@ -73,29 +71,17 @@
             this.PredmetLabel.TabIndex = 22;
             this.PredmetLabel.Text = "Предмет";
             // 
-            // dataGridViewKlassPredmet
-            // 
-            this.dataGridViewKlassPredmet.AllowUserToAddRows = false;
-            this.dataGridViewKlassPredmet.AllowUserToDeleteRows = false;
-            this.dataGridViewKlassPredmet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewKlassPredmet.Location = new System.Drawing.Point(32, 58);
-            this.dataGridViewKlassPredmet.Name = "dataGridViewKlassPredmet";
-            this.dataGridViewKlassPredmet.Size = new System.Drawing.Size(213, 211);
-            this.dataGridViewKlassPredmet.TabIndex = 26;
-            // 
             // NewPredmetForma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 340);
-            this.Controls.Add(this.dataGridViewKlassPredmet);
+            this.ClientSize = new System.Drawing.Size(284, 101);
             this.Controls.Add(this.SavePredmet);
             this.Controls.Add(this.RemovPredmet);
             this.Controls.Add(this.textBoxPredmet);
             this.Controls.Add(this.PredmetLabel);
             this.Name = "NewPredmetForma";
             this.Text = "Предметы";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKlassPredmet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -107,6 +93,5 @@
         private System.Windows.Forms.Button RemovPredmet;
         private System.Windows.Forms.TextBox textBoxPredmet;
         private System.Windows.Forms.Label PredmetLabel;
-        private System.Windows.Forms.DataGridView dataGridViewKlassPredmet;
     }
 }

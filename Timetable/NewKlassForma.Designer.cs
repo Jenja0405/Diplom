@@ -38,7 +38,7 @@
             // 
             // textBoxklass
             // 
-            this.textBoxklass.Location = new System.Drawing.Point(83, 30);
+            this.textBoxklass.Location = new System.Drawing.Point(65, 30);
             this.textBoxklass.Name = "textBoxklass";
             this.textBoxklass.Size = new System.Drawing.Size(155, 20);
             this.textBoxklass.TabIndex = 13;
@@ -55,7 +55,7 @@
             // 
             // Saveklass
             // 
-            this.Saveklass.Location = new System.Drawing.Point(24, 275);
+            this.Saveklass.Location = new System.Drawing.Point(33, 275);
             this.Saveklass.Name = "Saveklass";
             this.Saveklass.Size = new System.Drawing.Size(75, 23);
             this.Saveklass.TabIndex = 16;
@@ -65,7 +65,7 @@
             // 
             // Removklass
             // 
-            this.Removklass.Location = new System.Drawing.Point(163, 275);
+            this.Removklass.Location = new System.Drawing.Point(145, 275);
             this.Removklass.Name = "Removklass";
             this.Removklass.Size = new System.Drawing.Size(75, 23);
             this.Removklass.TabIndex = 17;
@@ -79,10 +79,11 @@
             this.dataGridViewKlassPredmet.AllowUserToDeleteRows = false;
             this.dataGridViewKlassPredmet.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewKlassPredmet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewKlassPredmet.Location = new System.Drawing.Point(24, 69);
+            this.dataGridViewKlassPredmet.Location = new System.Drawing.Point(33, 69);
             this.dataGridViewKlassPredmet.Name = "dataGridViewKlassPredmet";
+            this.dataGridViewKlassPredmet.RowHeadersVisible = false;
             this.dataGridViewKlassPredmet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridViewKlassPredmet.Size = new System.Drawing.Size(214, 200);
+            this.dataGridViewKlassPredmet.Size = new System.Drawing.Size(187, 200);
             this.dataGridViewKlassPredmet.TabIndex = 23;
             // 
             // NewKlassForma

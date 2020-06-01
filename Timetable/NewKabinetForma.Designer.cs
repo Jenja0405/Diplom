@@ -81,6 +81,7 @@
             this.dataGridViewPredmet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPredmet.Location = new System.Drawing.Point(33, 62);
             this.dataGridViewPredmet.Name = "dataGridViewPredmet";
+            this.dataGridViewPredmet.RowHeadersVisible = false;
             this.dataGridViewPredmet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewPredmet.Size = new System.Drawing.Size(214, 227);
             this.dataGridViewPredmet.TabIndex = 22;

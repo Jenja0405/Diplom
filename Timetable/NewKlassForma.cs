@@ -101,7 +101,7 @@ namespace Timetable
                     int id = Convert.ToInt32(dgvk.Cells[2].Value);
                     klassPredmet = DBobjects.Entities.KlassPredmet.FirstOrDefault(p => p.ID_KlassPredmet == id);
                 }
-                if (Convert.ToInt32(dgvk.Cells[2].Value) !=0)
+                if (Convert.ToInt32(dgvk.Cells[3].Value) !=0)
                 {
                     klassPredmet.ID_Klass = KLASS.ID_Klass;
                     klassPredmet.UrokovVNedelyu= Convert.ToInt16(dgvk.Cells[3].Value);
@@ -110,7 +110,7 @@ namespace Timetable
                         DBobjects.Entities.KlassPredmet.Add(klassPredmet);
                     DBobjects.Entities.SaveChanges();
                 }
-                else if (klassPredmet.ID_KlassPredmet != 0 && Convert.ToInt16(dgvk.Cells[2].Value) == 0)
+                else if (klassPredmet.ID_KlassPredmet != 0 && Convert.ToInt16(dgvk.Cells[3].Value) == 0)
                     DeleteKlassPredmet();
             }
         }

@@ -24,6 +24,7 @@ namespace Timetable
             dataGridViewPredmet.Columns[1].HeaderText = "Предмет";
             dataGridViewPredmet.Columns[2].Visible = false;
             dataGridViewPredmet.Columns[3].Visible = false;
+            dataGridViewPredmet.Columns[4].Visible = false;
 
         }
         private void dataGridViewPredmet_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)

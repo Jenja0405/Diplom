@@ -45,6 +45,8 @@
             // 
             // Raspisaniedata
             // 
+            this.Raspisaniedata.AllowUserToAddRows = false;
+            this.Raspisaniedata.AllowUserToDeleteRows = false;
             this.Raspisaniedata.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.Raspisaniedata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -57,9 +59,11 @@
             this.Raspisaniedata.DefaultCellStyle = dataGridViewCellStyle1;
             this.Raspisaniedata.Location = new System.Drawing.Point(39, 72);
             this.Raspisaniedata.Name = "Raspisaniedata";
+            this.Raspisaniedata.ReadOnly = true;
             this.Raspisaniedata.RowHeadersVisible = false;
             this.Raspisaniedata.Size = new System.Drawing.Size(600, 281);
             this.Raspisaniedata.TabIndex = 1;
+            this.Raspisaniedata.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Raspisaniedata_CellDoubleClick);
             // 
             // LabelSostavlenieraspisanie
             // 
@@ -101,7 +105,6 @@
             this.CpravochnikiToolStripMenuItem.Name = "CpravochnikiToolStripMenuItem";
             this.CpravochnikiToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.CpravochnikiToolStripMenuItem.Text = "Справочники";
-            this.CpravochnikiToolStripMenuItem.Click += new System.EventHandler(this.менюToolStripMenuItem_Click);
             // 
             // классыToolStripMenuItem
             // 

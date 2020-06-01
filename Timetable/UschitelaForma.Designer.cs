@@ -37,7 +37,7 @@
             // 
             this.Dobavuschitel.Location = new System.Drawing.Point(22, 187);
             this.Dobavuschitel.Name = "Dobavuschitel";
-            this.Dobavuschitel.Size = new System.Drawing.Size(333, 23);
+            this.Dobavuschitel.Size = new System.Drawing.Size(301, 23);
             this.Dobavuschitel.TabIndex = 8;
             this.Dobavuschitel.Text = "Добавление учителя";
             this.Dobavuschitel.UseVisualStyleBackColor = true;
@@ -45,11 +45,12 @@
             // 
             // dataGridViewucshitel
             // 
-            this.dataGridViewucshitel.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewucshitel.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewucshitel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewucshitel.Location = new System.Drawing.Point(22, 22);
             this.dataGridViewucshitel.Name = "dataGridViewucshitel";
-            this.dataGridViewucshitel.Size = new System.Drawing.Size(333, 150);
+            this.dataGridViewucshitel.RowHeadersVisible = false;
+            this.dataGridViewucshitel.Size = new System.Drawing.Size(301, 150);
             this.dataGridViewucshitel.TabIndex = 7;
             this.dataGridViewucshitel.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewucshitel_CellMouseDoubleClick);
             // 
@@ -57,7 +58,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 222);
+            this.ClientSize = new System.Drawing.Size(346, 222);
             this.Controls.Add(this.Dobavuschitel);
             this.Controls.Add(this.dataGridViewucshitel);
             this.Name = "UschitelaForma";

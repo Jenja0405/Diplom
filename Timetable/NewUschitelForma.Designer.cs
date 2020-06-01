@@ -42,7 +42,7 @@
             // 
             // Saveuschitel
             // 
-            this.Saveuschitel.Location = new System.Drawing.Point(12, 420);
+            this.Saveuschitel.Location = new System.Drawing.Point(28, 374);
             this.Saveuschitel.Name = "Saveuschitel";
             this.Saveuschitel.Size = new System.Drawing.Size(75, 23);
             this.Saveuschitel.TabIndex = 14;
@@ -52,7 +52,7 @@
             // 
             // Removeuschitel
             // 
-            this.Removeuschitel.Location = new System.Drawing.Point(194, 420);
+            this.Removeuschitel.Location = new System.Drawing.Point(170, 374);
             this.Removeuschitel.Name = "Removeuschitel";
             this.Removeuschitel.Size = new System.Drawing.Size(75, 23);
             this.Removeuschitel.TabIndex = 15;
@@ -119,15 +119,16 @@
             this.dataGridViewUschitelKlass.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewUschitelKlass.Location = new System.Drawing.Point(31, 106);
             this.dataGridViewUschitelKlass.Name = "dataGridViewUschitelKlass";
+            this.dataGridViewUschitelKlass.RowHeadersVisible = false;
             this.dataGridViewUschitelKlass.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridViewUschitelKlass.Size = new System.Drawing.Size(214, 308);
+            this.dataGridViewUschitelKlass.Size = new System.Drawing.Size(214, 244);
             this.dataGridViewUschitelKlass.TabIndex = 24;
             // 
             // NewUschitelForma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(281, 455);
+            this.ClientSize = new System.Drawing.Size(271, 415);
             this.Controls.Add(this.dataGridViewUschitelKlass);
             this.Controls.Add(this.Saveuschitel);
             this.Controls.Add(this.Removeuschitel);

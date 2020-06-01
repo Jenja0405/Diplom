@@ -49,6 +49,7 @@
             this.dataGridViewPredmet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPredmet.Location = new System.Drawing.Point(29, 12);
             this.dataGridViewPredmet.Name = "dataGridViewPredmet";
+            this.dataGridViewPredmet.RowHeadersVisible = false;
             this.dataGridViewPredmet.Size = new System.Drawing.Size(138, 150);
             this.dataGridViewPredmet.TabIndex = 4;
             this.dataGridViewPredmet.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewPredmet_CellMouseDoubleClick);

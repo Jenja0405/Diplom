@@ -39,6 +39,7 @@
             this.dataGridViewKlass.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewKlass.Location = new System.Drawing.Point(25, 12);
             this.dataGridViewKlass.Name = "dataGridViewKlass";
+            this.dataGridViewKlass.RowHeadersVisible = false;
             this.dataGridViewKlass.Size = new System.Drawing.Size(138, 150);
             this.dataGridViewKlass.TabIndex = 0;
             this.dataGridViewKlass.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewKlass_CellMouseDoubleClick);
@@ -57,7 +58,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(207, 229);
+            this.ClientSize = new System.Drawing.Size(195, 229);
             this.Controls.Add(this.DobavKlass);
             this.Controls.Add(this.dataGridViewKlass);
             this.Name = "KlassForma";
