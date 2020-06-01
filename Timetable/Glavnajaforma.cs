@@ -137,7 +137,8 @@ namespace Timetable
         }
         private void Raspisaniedata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            redaktirovatGlavnajaforma redakt = new redaktirovatGlavnajaforma();
+            Urok p = (Urok)Raspisaniedata.Rows[e.RowIndex].DataBoundItem;
+            redaktirovatGlavnajaforma redakt = new redaktirovatGlavnajaforma(p);
             redakt.ShowDialog();
         }
     }

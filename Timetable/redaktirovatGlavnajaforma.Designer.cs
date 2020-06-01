@@ -105,6 +105,7 @@
             this.buttonSave.TabIndex = 6;
             this.buttonSave.Text = "Сохранить изменения";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // comboBoxWeekday
             // 
@@ -144,6 +145,7 @@
             this.comboBoxKabinet.Name = "comboBoxKabinet";
             this.comboBoxKabinet.Size = new System.Drawing.Size(163, 21);
             this.comboBoxKabinet.TabIndex = 9;
+            this.comboBoxKabinet.SelectedIndexChanged += new System.EventHandler(this.comboBoxKabinet_SelectedIndexChanged);
             // 
             // comboBoxKlass
             // 
@@ -152,6 +154,7 @@
             this.comboBoxKlass.Name = "comboBoxKlass";
             this.comboBoxKlass.Size = new System.Drawing.Size(163, 21);
             this.comboBoxKlass.TabIndex = 10;
+            this.comboBoxKlass.SelectedIndexChanged += new System.EventHandler(this.comboBoxKlass_SelectedIndexChanged);
             // 
             // comboBoxPredmet
             // 
@@ -160,6 +163,7 @@
             this.comboBoxPredmet.Name = "comboBoxPredmet";
             this.comboBoxPredmet.Size = new System.Drawing.Size(163, 21);
             this.comboBoxPredmet.TabIndex = 11;
+            this.comboBoxPredmet.SelectedIndexChanged += new System.EventHandler(this.comboBoxPredmet_SelectedIndexChanged);
             // 
             // comboBoxUschitel
             // 
@@ -168,6 +172,7 @@
             this.comboBoxUschitel.Name = "comboBoxUschitel";
             this.comboBoxUschitel.Size = new System.Drawing.Size(163, 21);
             this.comboBoxUschitel.TabIndex = 12;
+            this.comboBoxUschitel.SelectedIndexChanged += new System.EventHandler(this.comboBoxUschitel_SelectedIndexChanged);
             // 
             // redaktirovatGlavnajaforma
             // 
