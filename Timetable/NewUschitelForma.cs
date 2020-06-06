@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -30,13 +31,25 @@ namespace Timetable
             textBoxotchestvo.Text = UCHITEL.Otchestvo;
         }
         private void Save()
-        {
-            if (DBobjects.Entities.Uchitel.Where(p => p.ID_Uchitel == UCHITEL.ID_Uchitel).Count() == 0)
+        {try
             {
-                DBobjects.Entities.Uchitel.Add(UCHITEL);
+                if (DBobjects.Entities.Uchitel.Where(p => p.ID_Uchitel == UCHITEL.ID_Uchitel).Count() == 0)
+                {
+                    DBobjects.Entities.Uchitel.Add(UCHITEL);
+                }
+                DBobjects.Entities.SaveChanges();
+                MessageBox.Show("Сохранено");
             }
-            DBobjects.Entities.SaveChanges();
-            MessageBox.Show("Сохранено");
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        MessageBox.Show("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+            }
         }
         private void Remove()
         {
@@ -104,7 +117,9 @@ namespace Timetable
             foreach (DataGridViewRow dgvu in dataGridViewUschitelKlass.Rows)
             {
                 if (Convert.ToInt32(dgvu.Cells[4].Value) == 0)
+                {
                     uchitelKlassPredmet = new UchitelKlassPredmet();
+                }
                 else
                 {
                     int id = Convert.ToInt32(dgvu.Cells[4].Value);
@@ -116,7 +131,7 @@ namespace Timetable
                     uchitelKlassPredmet.ID_KlassPredmet = Convert.ToInt32(dgvu.Cells[0].Value);
                     if (DBobjects.Entities.UchitelKlassPredmet.Where(p => p.ID_UchitelKlassPredmet == uchitelKlassPredmet.ID_UchitelKlassPredmet).Count() == 0)
                         DBobjects.Entities.UchitelKlassPredmet.Add(uchitelKlassPredmet);
-                    DBobjects.Entities.SaveChanges();
+                     DBobjects.Entities.SaveChanges();
                 }
                 else if (uchitelKlassPredmet.ID_UchitelKlassPredmet != 0 && Convert.ToBoolean(dgvu.Cells[3].Value) == false)
                     DeleteKabinetPredmet();

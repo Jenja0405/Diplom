@@ -13,7 +13,6 @@ namespace Timetable
 {
     public partial class Glavnajaforma : Form
     {
-
         public Glavnajaforma()
         {
             InitializeComponent();
@@ -26,8 +25,8 @@ namespace Timetable
             List<Predmet> Predmet = DBobjects.Entities.Predmet.ToList();
             List<Uchitel> Uchitel = DBobjects.Entities.Uchitel.ToList();
             List<Kabinet> Kabinet = DBobjects.Entities.Kabinet.ToList();
-            List<string> Weekday = new List<string>() { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница" };
-            List<int> NomerUroka = new List<int>() { 1, 2, 3, 4, 5, 6 };
+            List<int> Weekday = new List<int>() {1,2,3,4,5};
+            List<int> NomerUroka = new List<int>() { 1, 2, 3, 4, 5, 6};
             List<Urok> Urok = DBobjects.Entities.Urok.ToList();
 
             foreach (Klass k in Klass)
@@ -46,7 +45,7 @@ namespace Timetable
                                     {
                                         if (DBobjects.Entities.UchitelKlassPredmet.Where(q => q.Uchitel.ID_Uchitel == uc.ID_Uchitel && q.KlassPredmet.ID_Klass == k.ID_Klass && q.KlassPredmet.ID_Predmet == pr.ID_Predmet).Count() > 0)
                                         {
-                                            foreach (string w in Weekday)
+                                            foreach (int w in Weekday)
                                             {
                                                 if (Urok.Where(l => l.ID_Klass == k.ID_Klass && l.ID_Predmet == pr.ID_Predmet).Count() < pr.KlassPredmet.FirstOrDefault(f => f.ID_Predmet == pr.ID_Predmet && f.ID_Klass == k.ID_Klass).UrokovVNedelyu)
                                                 {
@@ -88,20 +87,53 @@ namespace Timetable
         }
         private void Fill1()
         {
-            Raspisaniedata.DataSource = DBobjects.Entities.Urok.ToList();
-            Raspisaniedata.Columns[0].Visible = false;
-            Raspisaniedata.Columns[1].Visible = false;
-            Raspisaniedata.Columns[2].Visible = false;
-            Raspisaniedata.Columns[3].Visible = false;
-            Raspisaniedata.Columns[4].Visible = false;
-            Raspisaniedata.Columns[5].HeaderText = "День недели";
-            Raspisaniedata.Columns[6].HeaderText = "Номер урока";
-            Raspisaniedata.Columns[7].HeaderText = "Кабинет";
-            Raspisaniedata.Columns[8].HeaderText = "Класс";
-            Raspisaniedata.Columns[9].HeaderText = "Предмет";
-            Raspisaniedata.Columns[10].HeaderText = "Учитель";
+            List<Urok> uroks = DBobjects.Entities.Urok.ToList();
+            uroks = uroks.OrderBy(q => q.Weekday).ToList();
+            System.Data.DataTable urok = new System.Data.DataTable();
+            DataColumn WeekDay = new DataColumn("День недели", Type.GetType("System.String"));
+            DataColumn Number = new DataColumn("Номер урока", Type.GetType("System.String"));
+            DataColumn Kabinets = new DataColumn("Кабинет", Type.GetType("System.String"));
+            DataColumn Klass = new DataColumn("Класс", Type.GetType("System.String"));
+            DataColumn Predmet = new DataColumn("Предмет", Type.GetType("System.String"));
+            DataColumn Uchit = new DataColumn("Учитель", Type.GetType("System.String"));
+            DataColumn idUrok = new DataColumn("idUrok", Type.GetType("System.Int32"));
+            urok.Columns.Add(WeekDay);
+            urok.Columns.Add(Number);
+            urok.Columns.Add(Kabinets);
+            urok.Columns.Add(Klass);
+            urok.Columns.Add(Predmet);
+            urok.Columns.Add(Uchit);
+            urok.Columns.Add(idUrok);
+            foreach  (Urok uroki in uroks)      
+            {
+                urok.Rows.Add(zamena(uroki.Weekday), uroki.Nomer_uroka, uroki.Kabinet, uroki.Klass, uroki.Predmet, uroki.Uchitel,uroki.ID_Urok);      
+            }
+            Raspisaniedata.DataSource = urok;
+            Raspisaniedata.Columns[6].Visible = false;
         }
-
+        private string zamena(int Weekday)
+        {
+            string day = "";
+                switch(Weekday)
+            {
+                case 1:
+                    day = "Понедельник";
+                    break;
+                case 2:
+                    day = "Вторник";
+                    break;
+                case 3:
+                    day = "Среда";
+                    break;
+                case 4:
+                    day = "Четверг";
+                    break;
+                case 5:
+                    day = "Пятница";
+                    break;
+            }
+            return day;
+        }
         private void учителяToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UschitelaForma uchitel = new UschitelaForma();
@@ -137,10 +169,11 @@ namespace Timetable
             }
         }
         private void Raspisaniedata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            Urok p = (Urok)Raspisaniedata.Rows[e.RowIndex].DataBoundItem;
+        { int id = Convert.ToInt32(Raspisaniedata.Rows[e.RowIndex].Cells[6].Value);
+            Urok p = DBobjects.Entities.Urok.FirstOrDefault(u => u.ID_Urok == id);
             redaktirovatGlavnajaforma redakt = new redaktirovatGlavnajaforma(p);
             redakt.ShowDialog();
+            Fill1();
         }
 
         private void экспортироватьВExceToolStripMenuItem_Click(object sender, EventArgs e)
@@ -159,11 +192,11 @@ namespace Timetable
                 ExcelApp.Cells[1, 5] = "Предмет";
                 ExcelApp.Cells[1, 6] = "Учитель";
 
-                for (int i = 5; i < Raspisaniedata.ColumnCount; i++)
+                for (int i = 0; i < Raspisaniedata.ColumnCount; i++)
                 {
                     for (int j = 0; j < Raspisaniedata.RowCount; j++)
                     {
-                        ExcelApp.Cells[j + 2, i + -4] = (Raspisaniedata[i, j].Value).ToString();
+                        ExcelApp.Cells[j + 2, i + 1] = (Raspisaniedata[i, j].Value).ToString();
                     }
                 }
                 ExcelApp.Visible = true;

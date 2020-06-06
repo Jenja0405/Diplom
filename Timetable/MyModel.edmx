@@ -69,7 +69,7 @@
           <Property Name="ID_Klass" Type="int" Nullable="false" />
           <Property Name="ID_Uchitel" Type="int" Nullable="false" />
           <Property Name="ID_Kabinet" Type="int" Nullable="false" />
-          <Property Name="Weekday" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Weekday" Type="int" Nullable="false" />
           <Property Name="Nomer_uroka" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK__KabinetPr__ID_Ka__0DAF0CB0">
@@ -358,7 +358,7 @@
           <Property Name="ID_Klass" Type="Int32" Nullable="false" />
           <Property Name="ID_Uchitel" Type="Int32" Nullable="false" />
           <Property Name="ID_Kabinet" Type="Int32" Nullable="false" />
-          <Property Name="Weekday" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Weekday" Type="Int32" Nullable="false" />
           <Property Name="Nomer_uroka" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Kabinet" Relationship="Self.FK__Urok__ID_Kabinet__1ED998B2" FromRole="Urok" ToRole="Kabinet" />
           <NavigationProperty Name="Klass" Relationship="Self.FK__Urok__ID_Klass__1CF15040" FromRole="Urok" ToRole="Klass" />

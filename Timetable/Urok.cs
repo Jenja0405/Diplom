@@ -19,7 +19,7 @@ namespace Timetable
         public int ID_Klass { get; set; }
         public int ID_Uchitel { get; set; }
         public int ID_Kabinet { get; set; }
-        public string Weekday { get; set; }
+        public int Weekday { get; set; }
         public int Nomer_uroka { get; set; }
     
         public virtual Kabinet Kabinet { get; set; }
