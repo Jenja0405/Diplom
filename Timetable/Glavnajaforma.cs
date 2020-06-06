@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
 
 namespace Timetable
 {
@@ -43,7 +44,7 @@ namespace Timetable
                                 {
                                     if (DBobjects.Entities.UchitelKlassPredmet.Where(z => z.KlassPredmet.ID_Predmet == pr.ID_Predmet && z.ID_Uchitel == uc.ID_Uchitel).Count() > 0)
                                     {
-                                        if (DBobjects.Entities.UchitelKlassPredmet.Where(q => q.Uchitel.ID_Uchitel == uc.ID_Uchitel && q.KlassPredmet.ID_Klass == k.ID_Klass && q.KlassPredmet.ID_Predmet== pr.ID_Predmet).Count() > 0)
+                                        if (DBobjects.Entities.UchitelKlassPredmet.Where(q => q.Uchitel.ID_Uchitel == uc.ID_Uchitel && q.KlassPredmet.ID_Klass == k.ID_Klass && q.KlassPredmet.ID_Predmet == pr.ID_Predmet).Count() > 0)
                                         {
                                             foreach (string w in Weekday)
                                             {
@@ -141,7 +142,34 @@ namespace Timetable
             redaktirovatGlavnajaforma redakt = new redaktirovatGlavnajaforma(p);
             redakt.ShowDialog();
         }
-    }
+
+        private void экспортироватьВExceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Экспортировать данные в Excel?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                this.Cursor = Cursors.WaitCursor;
+                Microsoft.Office.Interop.Excel.Application ExcelApp = new 
+                Microsoft.Office.Interop.Excel.Application();
+                ExcelApp.Application.Workbooks.Add(Type.Missing);
+                ExcelApp.Columns.ColumnWidth = 15;
+                ExcelApp.Cells[1, 1] = "День недели";
+                ExcelApp.Cells[1, 2] = "Номер урока";
+                ExcelApp.Cells[1, 3] = "Кабинет";
+                ExcelApp.Cells[1, 4] = "Класс";
+                ExcelApp.Cells[1, 5] = "Предмет";
+                ExcelApp.Cells[1, 6] = "Учитель";
+
+                for (int i = 5; i < Raspisaniedata.ColumnCount; i++)
+                {
+                    for (int j = 0; j < Raspisaniedata.RowCount; j++)
+                    {
+                        ExcelApp.Cells[j + 2, i + -4] = (Raspisaniedata[i, j].Value).ToString();
+                    }
+                }
+                ExcelApp.Visible = true;
+            }
+            this.Cursor = Cursors.Default;
+        }
 
     }
-
+}

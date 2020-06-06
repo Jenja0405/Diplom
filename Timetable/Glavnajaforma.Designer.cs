@@ -39,6 +39,7 @@
             this.кабинетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.предметыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.составлениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.экспортироватьВExceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.Raspisaniedata)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -81,7 +82,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SgenerirovatMenu,
             this.CpravochnikiToolStripMenuItem,
-            this.составлениеToolStripMenuItem});
+            this.составлениеToolStripMenuItem,
+            this.экспортироватьВExceToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(677, 24);
@@ -139,6 +141,13 @@
             this.составлениеToolStripMenuItem.Name = "составлениеToolStripMenuItem";
             this.составлениеToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
             // 
+            // экспортироватьВExceToolStripMenuItem
+            // 
+            this.экспортироватьВExceToolStripMenuItem.Name = "экспортироватьВExceToolStripMenuItem";
+            this.экспортироватьВExceToolStripMenuItem.Size = new System.Drawing.Size(149, 20);
+            this.экспортироватьВExceToolStripMenuItem.Text = "Экспортировать в Excel ";
+            this.экспортироватьВExceToolStripMenuItem.Click += new System.EventHandler(this.экспортироватьВExceToolStripMenuItem_Click);
+            // 
             // Glavnajaforma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,6 +177,7 @@
         private System.Windows.Forms.ToolStripMenuItem предметыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem составлениеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SgenerirovatMenu;
+        private System.Windows.Forms.ToolStripMenuItem экспортироватьВExceToolStripMenuItem;
     }
 }
 
