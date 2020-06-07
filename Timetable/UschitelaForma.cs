@@ -44,5 +44,14 @@ namespace Timetable
             d.ShowDialog();
             Fill();
         }
+
+        private void buttonUschitelClear_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите удалить список классов предметы у которых ведут учителя?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                DBobjects.Entities.UchitelClear();
+                MessageBox.Show("Список успешно очищен");
+            }
+        }
     }
 }

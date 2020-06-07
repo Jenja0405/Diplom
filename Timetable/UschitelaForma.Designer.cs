@@ -30,6 +30,7 @@
         {
             this.Dobavuschitel = new System.Windows.Forms.Button();
             this.dataGridViewucshitel = new System.Windows.Forms.DataGridView();
+            this.buttonUschitelClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewucshitel)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,11 +55,22 @@
             this.dataGridViewucshitel.TabIndex = 7;
             this.dataGridViewucshitel.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewucshitel_CellMouseDoubleClick);
             // 
+            // buttonUschitelClear
+            // 
+            this.buttonUschitelClear.Location = new System.Drawing.Point(22, 217);
+            this.buttonUschitelClear.Name = "buttonUschitelClear";
+            this.buttonUschitelClear.Size = new System.Drawing.Size(301, 23);
+            this.buttonUschitelClear.TabIndex = 9;
+            this.buttonUschitelClear.Text = "Очистить список классов предметы у которых ведут учителя";
+            this.buttonUschitelClear.UseVisualStyleBackColor = true;
+            this.buttonUschitelClear.Click += new System.EventHandler(this.buttonUschitelClear_Click);
+            // 
             // UschitelaForma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(346, 222);
+            this.ClientSize = new System.Drawing.Size(346, 254);
+            this.Controls.Add(this.buttonUschitelClear);
             this.Controls.Add(this.Dobavuschitel);
             this.Controls.Add(this.dataGridViewucshitel);
             this.Name = "UschitelaForma";
@@ -72,5 +84,6 @@
 
         private System.Windows.Forms.Button Dobavuschitel;
         private System.Windows.Forms.DataGridView dataGridViewucshitel;
+        private System.Windows.Forms.Button buttonUschitelClear;
     }
 }

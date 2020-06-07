@@ -104,8 +104,8 @@ namespace Timetable
             {
                 if (DBobjects.Entities.UchitelKlassPredmet.Where(p => p.ID_Uchitel == UCHITEL.ID_Uchitel && p.ID_KlassPredmet==klasspredm.ID_KlassPredmet).Count() > 0)
                     PredmetTable.Rows.Add(klasspredm.ID_KlassPredmet,klasspredm.Predmet,klasspredm.Klass, true, DBobjects.Entities.UchitelKlassPredmet.FirstOrDefault(p => p.ID_Uchitel == UCHITEL.ID_Uchitel && p.ID_KlassPredmet == klasspredm.ID_KlassPredmet).ID_UchitelKlassPredmet);
-                else
-                    PredmetTable.Rows.Add(klasspredm.ID_KlassPredmet,klasspredm.Predmet,klasspredm.Klass, false,0);
+                else if (DBobjects.Entities.UchitelKlassPredmet.Where(p => p.ID_KlassPredmet==klasspredm.ID_KlassPredmet).Count()== 0)   
+                PredmetTable.Rows.Add(klasspredm.ID_KlassPredmet,klasspredm.Predmet,klasspredm.Klass, false,0);
             }
             dataGridViewUschitelKlass.DataSource = PredmetTable;
             dataGridViewUschitelKlass.Columns[0].Visible = false;
@@ -143,6 +143,10 @@ namespace Timetable
             DBobjects.Entities.SaveChanges();
         }
 
+        private void dataGridViewUschitelKlass_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
     

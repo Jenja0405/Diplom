@@ -224,6 +224,7 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UchitelClear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище TimetableModelContainer">
           <EntitySet Name="Kabinet" EntityType="Self.Kabinet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KabinetPredmet" EntityType="Self.KabinetPredmet" Schema="dbo" store:Type="Tables" />
@@ -565,6 +566,7 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="UchitelClear" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -683,6 +685,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище Timetable.Model.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище Timetable.Model.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="UchitelClear" FunctionName="Хранилище Timetable.Model.UchitelClear" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

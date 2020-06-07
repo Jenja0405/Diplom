@@ -90,26 +90,26 @@ namespace Timetable
             List<Urok> uroks = DBobjects.Entities.Urok.ToList();
             uroks = uroks.OrderBy(q => q.Weekday).ToList();
             System.Data.DataTable urok = new System.Data.DataTable();
+            DataColumn idUrok = new DataColumn("idUrok", Type.GetType("System.Int32"));
             DataColumn WeekDay = new DataColumn("День недели", Type.GetType("System.String"));
             DataColumn Number = new DataColumn("Номер урока", Type.GetType("System.String"));
             DataColumn Kabinets = new DataColumn("Кабинет", Type.GetType("System.String"));
             DataColumn Klass = new DataColumn("Класс", Type.GetType("System.String"));
             DataColumn Predmet = new DataColumn("Предмет", Type.GetType("System.String"));
             DataColumn Uchit = new DataColumn("Учитель", Type.GetType("System.String"));
-            DataColumn idUrok = new DataColumn("idUrok", Type.GetType("System.Int32"));
+            urok.Columns.Add(idUrok);
             urok.Columns.Add(WeekDay);
             urok.Columns.Add(Number);
             urok.Columns.Add(Kabinets);
             urok.Columns.Add(Klass);
             urok.Columns.Add(Predmet);
             urok.Columns.Add(Uchit);
-            urok.Columns.Add(idUrok);
             foreach  (Urok uroki in uroks)      
             {
-                urok.Rows.Add(zamena(uroki.Weekday), uroki.Nomer_uroka, uroki.Kabinet, uroki.Klass, uroki.Predmet, uroki.Uchitel,uroki.ID_Urok);      
+                urok.Rows.Add(uroki.ID_Urok, zamena(uroki.Weekday), uroki.Nomer_uroka, uroki.Kabinet, uroki.Klass, uroki.Predmet, uroki.Uchitel);      
             }
             Raspisaniedata.DataSource = urok;
-            Raspisaniedata.Columns[6].Visible = false;
+            Raspisaniedata.Columns[0].Visible = false;
         }
         private string zamena(int Weekday)
         {
@@ -169,7 +169,7 @@ namespace Timetable
             }
         }
         private void Raspisaniedata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        { int id = Convert.ToInt32(Raspisaniedata.Rows[e.RowIndex].Cells[6].Value);
+        { int id = Convert.ToInt32(Raspisaniedata.Rows[e.RowIndex].Cells[0].Value);
             Urok p = DBobjects.Entities.Urok.FirstOrDefault(u => u.ID_Urok == id);
             redaktirovatGlavnajaforma redakt = new redaktirovatGlavnajaforma(p);
             redakt.ShowDialog();
@@ -192,11 +192,11 @@ namespace Timetable
                 ExcelApp.Cells[1, 5] = "Предмет";
                 ExcelApp.Cells[1, 6] = "Учитель";
 
-                for (int i = 0; i < Raspisaniedata.ColumnCount; i++)
+                for (int i = 1; i < Raspisaniedata.ColumnCount; i++)
                 {
                     for (int j = 0; j < Raspisaniedata.RowCount; j++)
                     {
-                        ExcelApp.Cells[j + 2, i + 1] = (Raspisaniedata[i, j].Value).ToString();
+                        ExcelApp.Cells[j + 2, i + 0] = (Raspisaniedata[i, j].Value).ToString();
                     }
                 }
                 ExcelApp.Visible = true;

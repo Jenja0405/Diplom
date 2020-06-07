@@ -143,5 +143,10 @@ namespace Timetable
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual int UchitelClear()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UchitelClear");
+        }
     }
 }

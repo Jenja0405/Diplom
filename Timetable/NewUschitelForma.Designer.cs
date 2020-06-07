@@ -123,6 +123,7 @@
             this.dataGridViewUschitelKlass.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewUschitelKlass.Size = new System.Drawing.Size(214, 244);
             this.dataGridViewUschitelKlass.TabIndex = 24;
+            this.dataGridViewUschitelKlass.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUschitelKlass_CellContentClick);
             // 
             // NewUschitelForma
             // 
