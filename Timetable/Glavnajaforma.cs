@@ -88,9 +88,11 @@ namespace Timetable
         private void GenerateSchedule()
         {
             DBobjects.Entities.Clear();
-            int P = 5;
+            //int P = 5;
             int maxId = DBobjects.Entities.Kabinet.OrderByDescending(p => p.ID_Kabinet).FirstOrDefault().ID_Kabinet + 1;
+            int maxIdK = DBobjects.Entities.Klass.OrderByDescending(p => p.ID_Klass).FirstOrDefault().ID_Klass + 1;
             int[,,] Zan =new int [maxId,6,7];
+            int[,,] Zan2 = new int[maxIdK, 6, 7];
             int[,] FreeKabs = new int[30, 2];
             Klass [] klasses = DBobjects.Entities.Klass.ToArray();
             Random RANDMASS = new Random();
@@ -104,10 +106,11 @@ namespace Timetable
             int Lk = klasses.Count();
             int ik = 0;
             List<Predmet> predmets = new List<Predmet>();
-            var tmp = klasses[ik];
-            List < KlassPredmet > klassPr = DBobjects.Entities.KlassPredmet.Where(p=>p.ID_Klass==tmp.ID_Klass).ToList();
-            if ((ik < Lk) && (P > 0))
+            foreach(Klass klass in klasses) { 
+            if ((ik < Lk) )
             {
+                var tmp = klass;
+                List<KlassPredmet> klassPr = DBobjects.Entities.KlassPredmet.Where(p => p.ID_Klass == tmp.ID_Klass).ToList();
                 foreach (KlassPredmet klPr in klassPr)
                 {
                     predmets.Add(klPr.Predmet);
@@ -115,72 +118,69 @@ namespace Timetable
                 predmets = predmets.Distinct().ToList();
 
                 int Lp = predmets.Count();
-                for (int ip = 0; ip < Lp - 1; ip++)
-                {
-                    var tmpP = predmets[ip];
-                    if (DBobjects.Entities.UchitelKlassPredmet.Where(p => p.KlassPredmet.ID_Predmet == tmpP.ID_Predmet && p.KlassPredmet.Klass.ID_Klass == tmp.ID_Klass).Count() > 0)
+                    for (int ip = 0; ip < Lp - 1; ip++)
                     {
-                        UchitelKlassPredmet klascPrUch = DBobjects.Entities.UchitelKlassPredmet.FirstOrDefault(p => p.KlassPredmet.ID_Predmet == tmpP.ID_Predmet && p.KlassPredmet.Klass.ID_Klass == tmp.ID_Klass);
-                        int uc = klascPrUch.ID_Uchitel;
-                        int N = klascPrUch.KlassPredmet.UrokovVNedelyu;
-                        List<Kabinet> kabinets = new List<Kabinet>();
-                        for (int i = 1; i <= N; i++)
+                        var tmpP = predmets[ip];
+                        if (DBobjects.Entities.UchitelKlassPredmet.Where(p => p.KlassPredmet.ID_Predmet == tmpP.ID_Predmet && p.KlassPredmet.Klass.ID_Klass == tmp.ID_Klass).Count() > 0)
                         {
-                            List<KabinetPredmet> kabPredm = DBobjects.Entities.KabinetPredmet.Where(p => p.ID_Predmet == tmpP.ID_Predmet).ToList();
-                            foreach (KabinetPredmet kabPr in kabPredm)
+                            UchitelKlassPredmet klascPrUch = DBobjects.Entities.UchitelKlassPredmet.FirstOrDefault(p => p.KlassPredmet.ID_Predmet == tmpP.ID_Predmet && p.KlassPredmet.Klass.ID_Klass == tmp.ID_Klass);
+                            int uc = klascPrUch.ID_Uchitel;
+                            int N = klascPrUch.KlassPredmet.UrokovVNedelyu;
+                            List<Kabinet> kabinets = new List<Kabinet>();
+                            for (int i = 1; i <= N; i++)
                             {
-                                kabinets.Add(kabPr.Kabinet);
-                            }
-                            int Lkab = kabinets.Count();
-                            for (int ikab = 0; ikab < Lkab - 1; ikab++)
-                            {
-                                var tmpKab = kabinets[ikab];
-                                int fk = -1;
-                                for (int iwd = 1; iwd <= 5; iwd++)
+                                List<KabinetPredmet> kabPredm = DBobjects.Entities.KabinetPredmet.Where(p => p.ID_Predmet == tmpP.ID_Predmet).ToList();
+                                foreach (KabinetPredmet kabPr in kabPredm)
                                 {
-                                    for (int iur = 1; iur <= 6; iur++)
+                                    kabinets.Add(kabPr.Kabinet);
+                                }
+                                int Lkab = kabinets.Count();
+                                for (int ikab = 0; ikab < Lkab - 1; ikab++)
+                                {
+                                    var tmpKab = kabinets[ikab];
+                                    int fk = -1;
+                                    for (int iwd = 1; iwd <= 5; iwd++)
                                     {
-                                        if (Zan[tmpKab.ID_Kabinet, iwd, iur] == 0)
+                                        for (int iur = 1; iur <= 6; iur++)
                                         {
-                                            fk = fk + 1;
-                                            FreeKabs[fk, 0] = iwd;
-                                            FreeKabs[fk, 1] = iur;
+                                            if (Zan[tmpKab.ID_Kabinet, iwd, iur] == 0 && Zan2[tmp.ID_Klass, iwd, iur] == 0)
+                                            {
+                                                fk = fk + 1;
+                                                FreeKabs[fk, 0] = iwd;
+                                                FreeKabs[fk, 1] = iur;
+                                            }
                                         }
                                     }
-                                }
-                                if (fk >= 0)
-                                {
-                                    Random rand = new Random();
-                                    var rndwu = rand.Next(fk);
-                                    var wd = FreeKabs[rndwu, 0];
-                                    var ur = FreeKabs[rndwu, 1];
+                                    if (fk >= 0)
+                                    {
+                                        Random rand = new Random();
+                                        var rndwu = rand.Next(fk);
+                                        var wd = FreeKabs[rndwu, 0];
+                                        var ur = FreeKabs[rndwu, 1];
 
-                                    Zan[tmpKab.ID_Kabinet, wd, ur] = 1;
-                                    Urok urok = new Urok();
-                                    urok.ID_Kabinet = tmpKab.ID_Kabinet;
-                                    urok.ID_Klass = tmp.ID_Klass;
-                                    urok.ID_Predmet = tmpP.ID_Predmet;
-                                    urok.ID_Uchitel = uc;
-                                    urok.Weekday = wd;
-                                    urok.Nomer_uroka = ur;
-                                    DBobjects.Entities.Urok.Add(urok);
-                                    DBobjects.Entities.SaveChanges();
+                                        Zan[tmpKab.ID_Kabinet, wd, ur] = 1;
+                                        Zan2[tmp.ID_Klass, wd, ur] = 1;
+                                        Urok urok = new Urok();
+                                        urok.ID_Kabinet = tmpKab.ID_Kabinet;
+                                        urok.ID_Klass = tmp.ID_Klass;
+                                        urok.ID_Predmet = tmpP.ID_Predmet;
+                                        urok.ID_Uchitel = uc;
+                                        urok.Weekday = wd;
+                                        urok.Nomer_uroka = ur;
+                                        DBobjects.Entities.Urok.Add(urok);
+                                        DBobjects.Entities.SaveChanges();
+                                    }
                                 }
+
                             }
-                            P = P - 1;
 
                         }
-                    }
 
+                    }
                 }
-                ik = ik + 1;
+
             }
-            /*if (P == 0)
-            {
-                MessageBox.Show("hc");
-            }
-            else*/
-            Fill1();
+                Fill1();          
         } 
         private void Fill1()
         {
