@@ -19,72 +19,169 @@ namespace Timetable
             Fill1();
         }
 
-        private void Fill()
+        /*  private void Fill()
+          {
+              List<Klass> Klass = DBobjects.Entities.Klass.ToList();
+              List<Predmet> Predmet = DBobjects.Entities.Predmet.ToList();
+              List<Uchitel> Uchitel = DBobjects.Entities.Uchitel.ToList();
+              List<Kabinet> Kabinet = DBobjects.Entities.Kabinet.ToList();
+              List<int> Weekday = new List<int>() {1,2,3,4,5};
+              List<int> NomerUroka = new List<int>() { 1, 2, 3, 4, 5, 6};
+              List<Urok> Urok = DBobjects.Entities.Urok.ToList();
+
+              foreach (Klass k in Klass)
+              {
+                  foreach (Predmet pr in Predmet)
+                  {
+                      if (DBobjects.Entities.KlassPredmet.Where(q => q.ID_Klass == k.ID_Klass && q.ID_Predmet == pr.ID_Predmet).Count() > 0)
+                      {
+                          foreach (Kabinet kab in Kabinet)
+                          {
+                              if (DBobjects.Entities.KabinetPredmet.Where(a => a.ID_Kabinet == kab.ID_Kabinet && a.ID_Predmet == pr.ID_Predmet).Count() > 0)
+                              {
+                                  foreach (Uchitel uc in Uchitel)
+                                  {
+                                      if (DBobjects.Entities.UchitelKlassPredmet.Where(z => z.KlassPredmet.ID_Predmet == pr.ID_Predmet && z.ID_Uchitel == uc.ID_Uchitel).Count() > 0)
+                                      {
+                                          if (DBobjects.Entities.UchitelKlassPredmet.Where(q => q.Uchitel.ID_Uchitel == uc.ID_Uchitel && q.KlassPredmet.ID_Klass == k.ID_Klass && q.KlassPredmet.ID_Predmet == pr.ID_Predmet).Count() > 0)
+                                          {
+                                              foreach (int w in Weekday)
+                                              {
+                                                  if (Urok.Where(l => l.ID_Klass == k.ID_Klass && l.ID_Predmet == pr.ID_Predmet).Count() < pr.KlassPredmet.FirstOrDefault(f => f.ID_Predmet == pr.ID_Predmet && f.ID_Klass == k.ID_Klass).UrokovVNedelyu)
+                                                  {
+                                                      foreach (int nomer in NomerUroka)
+                                                      {
+                                                          if (Urok.Where(v => v.Weekday == w && v.ID_Klass == k.ID_Klass && v.ID_Predmet == pr.ID_Predmet).Count() < 1)
+                                                          {
+                                                              Urok ur = new Urok();
+
+
+                                                              if (Urok.Where(h => h.Nomer_uroka == nomer && h.Weekday == w).Count() == 0)
+                                                              {
+                                                                  ur.ID_Uchitel = uc.ID_Uchitel;
+                                                                  ur.ID_Predmet = pr.ID_Predmet;
+                                                                  ur.ID_Kabinet = kab.ID_Kabinet;
+                                                                  ur.ID_Klass = k.ID_Klass;
+                                                                  ur.Weekday = w;
+                                                                  ur.Nomer_uroka = nomer;
+                                                                  Urok.Add(ur);
+                                                                  DBobjects.Entities.Urok.Add(ur);
+                                                                  DBobjects.Entities.SaveChanges();
+                                                              }
+                                                          }
+                                                      }
+                                                  }
+                                              }
+                                          }
+
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  }
+
+
+
+              }
+          }*/
+        private void GenerateSchedule()
         {
-            List<Klass> Klass = DBobjects.Entities.Klass.ToList();
-            List<Predmet> Predmet = DBobjects.Entities.Predmet.ToList();
-            List<Uchitel> Uchitel = DBobjects.Entities.Uchitel.ToList();
-            List<Kabinet> Kabinet = DBobjects.Entities.Kabinet.ToList();
-            List<int> Weekday = new List<int>() {1,2,3,4,5};
-            List<int> NomerUroka = new List<int>() { 1, 2, 3, 4, 5, 6};
-            List<Urok> Urok = DBobjects.Entities.Urok.ToList();
-
-            foreach (Klass k in Klass)
+            DBobjects.Entities.Clear();
+            int P = 5;
+            int maxId = DBobjects.Entities.Kabinet.OrderByDescending(p => p.ID_Kabinet).FirstOrDefault().ID_Kabinet + 1;
+            int[,,] Zan =new int [maxId,6,7];
+            int[,] FreeKabs = new int[30, 2];
+            Klass [] klasses = DBobjects.Entities.Klass.ToArray();
+            Random RANDMASS = new Random();
+           for (int i= klasses.Length - 1; i >= 1; i--)
+           {
+                int j = RANDMASS.Next(i + 1);
+               Klass tmpM = klasses[j];
+               klasses[j] = klasses[i];
+                klasses[i] = tmpM;
+            }
+            int Lk = klasses.Count();
+            int ik = 0;
+            List<Predmet> predmets = new List<Predmet>();
+            var tmp = klasses[ik];
+            List < KlassPredmet > klassPr = DBobjects.Entities.KlassPredmet.Where(p=>p.ID_Klass==tmp.ID_Klass).ToList();
+            if ((ik < Lk) && (P > 0))
             {
-                foreach (Predmet pr in Predmet)
+                foreach (KlassPredmet klPr in klassPr)
                 {
-                    if (DBobjects.Entities.KlassPredmet.Where(q => q.ID_Klass == k.ID_Klass && q.ID_Predmet == pr.ID_Predmet).Count() > 0)
+                    predmets.Add(klPr.Predmet);
+                }
+                predmets = predmets.Distinct().ToList();
+
+                int Lp = predmets.Count();
+                for (int ip = 0; ip < Lp - 1; ip++)
+                {
+                    var tmpP = predmets[ip];
+                    if (DBobjects.Entities.UchitelKlassPredmet.Where(p => p.KlassPredmet.ID_Predmet == tmpP.ID_Predmet && p.KlassPredmet.Klass.ID_Klass == tmp.ID_Klass).Count() > 0)
                     {
-                        foreach (Kabinet kab in Kabinet)
+                        UchitelKlassPredmet klascPrUch = DBobjects.Entities.UchitelKlassPredmet.FirstOrDefault(p => p.KlassPredmet.ID_Predmet == tmpP.ID_Predmet && p.KlassPredmet.Klass.ID_Klass == tmp.ID_Klass);
+                        int uc = klascPrUch.ID_Uchitel;
+                        int N = klascPrUch.KlassPredmet.UrokovVNedelyu;
+                        List<Kabinet> kabinets = new List<Kabinet>();
+                        for (int i = 1; i <= N; i++)
                         {
-                            if (DBobjects.Entities.KabinetPredmet.Where(a => a.ID_Kabinet == kab.ID_Kabinet && a.ID_Predmet == pr.ID_Predmet).Count() > 0)
+                            List<KabinetPredmet> kabPredm = DBobjects.Entities.KabinetPredmet.Where(p => p.ID_Predmet == tmpP.ID_Predmet).ToList();
+                            foreach (KabinetPredmet kabPr in kabPredm)
                             {
-                                foreach (Uchitel uc in Uchitel)
+                                kabinets.Add(kabPr.Kabinet);
+                            }
+                            int Lkab = kabinets.Count();
+                            for (int ikab = 0; ikab < Lkab - 1; ikab++)
+                            {
+                                var tmpKab = kabinets[ikab];
+                                int fk = -1;
+                                for (int iwd = 1; iwd <= 5; iwd++)
                                 {
-                                    if (DBobjects.Entities.UchitelKlassPredmet.Where(z => z.KlassPredmet.ID_Predmet == pr.ID_Predmet && z.ID_Uchitel == uc.ID_Uchitel).Count() > 0)
+                                    for (int iur = 1; iur <= 6; iur++)
                                     {
-                                        if (DBobjects.Entities.UchitelKlassPredmet.Where(q => q.Uchitel.ID_Uchitel == uc.ID_Uchitel && q.KlassPredmet.ID_Klass == k.ID_Klass && q.KlassPredmet.ID_Predmet == pr.ID_Predmet).Count() > 0)
+                                        if (Zan[tmpKab.ID_Kabinet, iwd, iur] == 0)
                                         {
-                                            foreach (int w in Weekday)
-                                            {
-                                                if (Urok.Where(l => l.ID_Klass == k.ID_Klass && l.ID_Predmet == pr.ID_Predmet).Count() < pr.KlassPredmet.FirstOrDefault(f => f.ID_Predmet == pr.ID_Predmet && f.ID_Klass == k.ID_Klass).UrokovVNedelyu)
-                                                {
-                                                    foreach (int nomer in NomerUroka)
-                                                    {
-                                                        if (Urok.Where(v => v.Weekday == w && v.ID_Klass == k.ID_Klass && v.ID_Predmet == pr.ID_Predmet).Count() < 1)
-                                                        {
-                                                            Urok ur = new Urok();
-
-
-                                                            if (Urok.Where(h => h.Nomer_uroka == nomer && h.Weekday == w).Count() == 0)
-                                                            {
-                                                                ur.ID_Uchitel = uc.ID_Uchitel;
-                                                                ur.ID_Predmet = pr.ID_Predmet;
-                                                                ur.ID_Kabinet = kab.ID_Kabinet;
-                                                                ur.ID_Klass = k.ID_Klass;
-                                                                ur.Weekday = w;
-                                                                ur.Nomer_uroka = nomer;
-                                                                Urok.Add(ur);
-                                                                DBobjects.Entities.Urok.Add(ur);
-                                                                DBobjects.Entities.SaveChanges();
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
+                                            fk = fk + 1;
+                                            FreeKabs[fk, 0] = iwd;
+                                            FreeKabs[fk, 1] = iur;
                                         }
-
                                     }
                                 }
+                                if (fk >= 0)
+                                {
+                                    Random rand = new Random();
+                                    var rndwu = rand.Next(fk);
+                                    var wd = FreeKabs[rndwu, 0];
+                                    var ur = FreeKabs[rndwu, 1];
+
+                                    Zan[tmpKab.ID_Kabinet, wd, ur] = 1;
+                                    Urok urok = new Urok();
+                                    urok.ID_Kabinet = tmpKab.ID_Kabinet;
+                                    urok.ID_Klass = tmp.ID_Klass;
+                                    urok.ID_Predmet = tmpP.ID_Predmet;
+                                    urok.ID_Uchitel = uc;
+                                    urok.Weekday = wd;
+                                    urok.Nomer_uroka = ur;
+                                    DBobjects.Entities.Urok.Add(urok);
+                                    DBobjects.Entities.SaveChanges();
+                                }
                             }
+                            P = P - 1;
+
                         }
                     }
+
                 }
-
-
-
+                ik = ik + 1;
             }
-        }
+            /*if (P == 0)
+            {
+                MessageBox.Show("hc");
+            }
+            else*/
+            Fill1();
+        } 
         private void Fill1()
         {
             List<Urok> uroks = DBobjects.Entities.Urok.ToList();
@@ -163,13 +260,14 @@ namespace Timetable
             {
                 this.Cursor = Cursors.WaitCursor;
                 DBobjects.Entities.Clear();
-                Fill();
-                Fill1();
+                GenerateSchedule();
+                //Fill1();
                 this.Cursor = Cursors.Default;
             }
         }
         private void Raspisaniedata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        { int id = Convert.ToInt32(Raspisaniedata.Rows[e.RowIndex].Cells[0].Value);
+        {
+            int id = Convert.ToInt32(Raspisaniedata.Rows[e.RowIndex].Cells[0].Value);
             Urok p = DBobjects.Entities.Urok.FirstOrDefault(u => u.ID_Urok == id);
             redaktirovatGlavnajaforma redakt = new redaktirovatGlavnajaforma(p);
             redakt.ShowDialog();
@@ -204,5 +302,9 @@ namespace Timetable
             this.Cursor = Cursors.Default;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //GenerateSchedule();
+        }
     }
 }
