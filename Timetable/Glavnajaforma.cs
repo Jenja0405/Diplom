@@ -89,10 +89,12 @@ namespace Timetable
         {
             DBobjects.Entities.Clear();
             //int P = 5;
-            int maxId = DBobjects.Entities.Kabinet.OrderByDescending(p => p.ID_Kabinet).FirstOrDefault().ID_Kabinet + 1;
-            int maxIdK = DBobjects.Entities.Klass.OrderByDescending(p => p.ID_Klass).FirstOrDefault().ID_Klass + 1;
-            int[,,] Zan =new int [maxId,6,7];
-            int[,,] Zan2 = new int[maxIdK, 6, 7];
+            int maxIdKabinet = DBobjects.Entities.Kabinet.OrderByDescending(p => p.ID_Kabinet).FirstOrDefault().ID_Kabinet + 1;
+            int maxIdKlass = DBobjects.Entities.Klass.OrderByDescending(p => p.ID_Klass).FirstOrDefault().ID_Klass + 1;
+            int maxIdUchitel = DBobjects.Entities.Uchitel.OrderByDescending(p => p.ID_Uchitel).FirstOrDefault().ID_Uchitel + 1;
+            int[,,] ZanKabinet =new int [maxIdKabinet, 6,7];
+            int[,,] ZanKlass = new int[maxIdKlass, 6, 7];
+            int[,,] ZanUchitel = new int[maxIdUchitel, 6, 7];
             int[,] FreeKabs = new int[30, 2];
             Klass [] klasses = DBobjects.Entities.Klass.ToArray();
             Random RANDMASS = new Random();
@@ -106,19 +108,20 @@ namespace Timetable
             int Lk = klasses.Count();
             int ik = 0;
             List<Predmet> predmets = new List<Predmet>();
-            foreach(Klass klass in klasses) { 
-            if ((ik < Lk) )
+               // ik = i;
+            while ((ik < Lk) )
             {
-                var tmp = klass;
+                //for (; ik < klasses.Count(); )
+                //{
+                var tmp = klasses[ik];
                 List<KlassPredmet> klassPr = DBobjects.Entities.KlassPredmet.Where(p => p.ID_Klass == tmp.ID_Klass).ToList();
                 foreach (KlassPredmet klPr in klassPr)
                 {
                     predmets.Add(klPr.Predmet);
                 }
-                predmets = predmets.Distinct().ToList();
-
+                predmets = predmets.Distinct().ToList();//список предметов для класса
                 int Lp = predmets.Count();
-                    for (int ip = 0; ip < Lp - 1; ip++)
+                    for (int ip = 0; ip < Lp ; ip++)
                     {
                         var tmpP = predmets[ip];
                         if (DBobjects.Entities.UchitelKlassPredmet.Where(p => p.KlassPredmet.ID_Predmet == tmpP.ID_Predmet && p.KlassPredmet.Klass.ID_Klass == tmp.ID_Klass).Count() > 0)
@@ -135,52 +138,50 @@ namespace Timetable
                                     kabinets.Add(kabPr.Kabinet);
                                 }
                                 int Lkab = kabinets.Count();
-                                for (int ikab = 0; ikab < Lkab - 1; ikab++)
+                            for (int ikab = 0; ikab < Lkab; ikab++)
+                            {
+                                var tmpKab = kabinets[ikab];
+                                int fk = -1;
+                                for (int iwd = 1; iwd <= 5; iwd++)
                                 {
-                                    var tmpKab = kabinets[ikab];
-                                    int fk = -1;
-                                    for (int iwd = 1; iwd <= 5; iwd++)
+                                    for (int iur = 1; iur <= 6; iur++)
                                     {
-                                        for (int iur = 1; iur <= 6; iur++)
+                                        if (ZanKabinet[tmpKab.ID_Kabinet, iwd, iur] == 0 && ZanKlass[tmp.ID_Klass, iwd, iur] == 0 && ZanUchitel[uc, iwd, iur] == 0)
                                         {
-                                            if (Zan[tmpKab.ID_Kabinet, iwd, iur] == 0 && Zan2[tmp.ID_Klass, iwd, iur] == 0)
-                                            {
-                                                fk = fk + 1;
-                                                FreeKabs[fk, 0] = iwd;
-                                                FreeKabs[fk, 1] = iur;
-                                            }
+                                            fk = fk + 1;
+                                            FreeKabs[fk, 0] = iwd;
+                                            FreeKabs[fk, 1] = iur;
                                         }
                                     }
-                                    if (fk >= 0)
-                                    {
-                                        Random rand = new Random();
-                                        var rndwu = rand.Next(fk);
-                                        var wd = FreeKabs[rndwu, 0];
-                                        var ur = FreeKabs[rndwu, 1];
-
-                                        Zan[tmpKab.ID_Kabinet, wd, ur] = 1;
-                                        Zan2[tmp.ID_Klass, wd, ur] = 1;
-                                        Urok urok = new Urok();
-                                        urok.ID_Kabinet = tmpKab.ID_Kabinet;
-                                        urok.ID_Klass = tmp.ID_Klass;
-                                        urok.ID_Predmet = tmpP.ID_Predmet;
-                                        urok.ID_Uchitel = uc;
-                                        urok.Weekday = wd;
-                                        urok.Nomer_uroka = ur;
-                                        DBobjects.Entities.Urok.Add(urok);
-                                        DBobjects.Entities.SaveChanges();
-                                    }
                                 }
+                                if (fk >= 0)
+                                {
+                                    Random rand = new Random();
+                                    var rndwu = rand.Next(fk);
+                                    var wd = FreeKabs[rndwu, 0];
+                                    var ur = FreeKabs[rndwu, 1];
 
-                            }
-
+                                    ZanKabinet[tmpKab.ID_Kabinet, wd, ur] = 1;
+                                    ZanKlass[tmp.ID_Klass, wd, ur] = 1;
+                                    ZanUchitel[uc, wd, ur] = 1;
+                                    Urok urok = new Urok();
+                                    urok.ID_Kabinet = tmpKab.ID_Kabinet;
+                                    urok.ID_Klass = tmp.ID_Klass;
+                                    urok.ID_Predmet = tmpP.ID_Predmet;
+                                    urok.ID_Uchitel = uc;
+                                    urok.Weekday = wd;
+                                    urok.Nomer_uroka = ur;
+                                    DBobjects.Entities.Urok.Add(urok);
+                                    DBobjects.Entities.SaveChanges();
+                                }
+                                break;
+                            }                            
                         }
-
+                        
                     }
                 }
-
-            }
-                Fill1();          
+                ik++;
+            }                   
         } 
         private void Fill1()
         {
@@ -261,7 +262,7 @@ namespace Timetable
                 this.Cursor = Cursors.WaitCursor;
                 DBobjects.Entities.Clear();
                 GenerateSchedule();
-                //Fill1();
+                Fill1();
                 this.Cursor = Cursors.Default;
             }
         }

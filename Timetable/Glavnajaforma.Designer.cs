@@ -40,18 +40,15 @@
             this.предметыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.составлениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EcsportMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.Raspisaniedata)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // Raspisaniedata
             // 
             this.Raspisaniedata.AllowUserToAddRows = false;
             this.Raspisaniedata.AllowUserToDeleteRows = false;
-            this.Raspisaniedata.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.Raspisaniedata.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Raspisaniedata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
@@ -89,7 +86,7 @@
             this.EcsportMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(884, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(708, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -151,31 +148,11 @@
             this.EcsportMenu.Text = "Экспортировать в Excel ";
             this.EcsportMenu.Click += new System.EventHandler(this.экспортироватьВExceToolStripMenuItem_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(699, 38);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(676, 72);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(196, 202);
-            this.dataGridView1.TabIndex = 5;
-            // 
             // Glavnajaforma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 365);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(708, 365);
             this.Controls.Add(this.LabelSostavlenieraspisanie);
             this.Controls.Add(this.Raspisaniedata);
             this.Controls.Add(this.menuStrip1);
@@ -184,7 +161,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Raspisaniedata)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,8 +178,6 @@
         private System.Windows.Forms.ToolStripMenuItem составлениеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SgenerirovatMenu;
         private System.Windows.Forms.ToolStripMenuItem EcsportMenu;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

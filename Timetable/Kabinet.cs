@@ -29,5 +29,6 @@ namespace Timetable
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Urok> Urok { get; set; }
         public override string ToString() => Nazvanie_K;
+
     }
 }

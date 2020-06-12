@@ -73,7 +73,9 @@
           <Property Name="Nomer_uroka" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK__KabinetPr__ID_Ka__0DAF0CB0">
-          <End Role="Kabinet" Type="Self.Kabinet" Multiplicity="1" />
+          <End Role="Kabinet" Type="Self.Kabinet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="KabinetPredmet" Type="Self.KabinetPredmet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Kabinet">
@@ -85,7 +87,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__KabinetPr__ID_Pr__0EA330E9">
-          <End Role="Predmet" Type="Self.Predmet" Multiplicity="1" />
+          <End Role="Predmet" Type="Self.Predmet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="KabinetPredmet" Type="Self.KabinetPredmet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Predmet">
@@ -97,7 +101,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__KlassPred__ID_Kl__1367E606">
-          <End Role="Klass" Type="Self.Klass" Multiplicity="1" />
+          <End Role="Klass" Type="Self.Klass" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="KlassPredmet" Type="Self.KlassPredmet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Klass">
@@ -109,7 +115,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__KlassPred__ID_Pr__145C0A3F">
-          <End Role="Predmet" Type="Self.Predmet" Multiplicity="1" />
+          <End Role="Predmet" Type="Self.Predmet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="KlassPredmet" Type="Self.KlassPredmet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Predmet">
@@ -121,7 +129,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__UchitelKl__ID_Kl__173876EA">
-          <End Role="KlassPredmet" Type="Self.KlassPredmet" Multiplicity="1" />
+          <End Role="KlassPredmet" Type="Self.KlassPredmet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="UchitelKlassPredmet" Type="Self.UchitelKlassPredmet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KlassPredmet">
@@ -133,7 +143,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__UchitelKl__ID_Uc__164452B1">
-          <End Role="Uchitel" Type="Self.Uchitel" Multiplicity="1" />
+          <End Role="Uchitel" Type="Self.Uchitel" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="UchitelKlassPredmet" Type="Self.UchitelKlassPredmet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Uchitel">
@@ -145,7 +157,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Urok__ID_Kabinet__1ED998B2">
-          <End Role="Kabinet" Type="Self.Kabinet" Multiplicity="1" />
+          <End Role="Kabinet" Type="Self.Kabinet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Urok" Type="Self.Urok" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Kabinet">
@@ -157,7 +171,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Urok__ID_Klass__1CF15040">
-          <End Role="Klass" Type="Self.Klass" Multiplicity="1" />
+          <End Role="Klass" Type="Self.Klass" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Urok" Type="Self.Urok" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Klass">
@@ -169,7 +185,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Urok__ID_Predmet__1BFD2C07">
-          <End Role="Predmet" Type="Self.Predmet" Multiplicity="1" />
+          <End Role="Predmet" Type="Self.Predmet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Urok" Type="Self.Urok" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Predmet">
@@ -181,7 +199,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Urok__ID_Uchitel__1DE57479">
-          <End Role="Uchitel" Type="Self.Uchitel" Multiplicity="1" />
+          <End Role="Uchitel" Type="Self.Uchitel" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Urok" Type="Self.Urok" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Uchitel">
