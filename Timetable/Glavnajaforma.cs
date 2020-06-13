@@ -116,7 +116,7 @@ namespace Timetable
         private void Fill1()
         {
             List<Urok> uroks = DBobjects.Entities.Urok.ToList();
-            uroks = uroks.OrderBy(q => q.Weekday).ToList();
+            uroks = uroks.OrderBy(q => q.Weekday).ThenBy(q => q.Klass.ToString()).ThenBy(q => q.Nomer_uroka).ToList();
             System.Data.DataTable urok = new System.Data.DataTable();
             DataColumn idUrok = new DataColumn("idUrok", Type.GetType("System.Int32"));
             DataColumn WeekDay = new DataColumn("День недели", Type.GetType("System.String"));
@@ -231,6 +231,11 @@ namespace Timetable
                 ExcelApp.Visible = true;
             }
             this.Cursor = Cursors.Default;
+        }
+
+        private void Glavnajaforma_Load(object sender, EventArgs e)
+        {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                  
         }
     }
 }

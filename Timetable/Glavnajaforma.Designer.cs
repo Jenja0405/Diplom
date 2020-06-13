@@ -38,7 +38,6 @@
             this.учителяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.кабинетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.предметыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.составлениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EcsportMenu = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.Raspisaniedata)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -62,7 +61,7 @@
             this.Raspisaniedata.Name = "Raspisaniedata";
             this.Raspisaniedata.ReadOnly = true;
             this.Raspisaniedata.RowHeadersVisible = false;
-            this.Raspisaniedata.Size = new System.Drawing.Size(600, 281);
+            this.Raspisaniedata.Size = new System.Drawing.Size(657, 281);
             this.Raspisaniedata.TabIndex = 1;
             this.Raspisaniedata.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Raspisaniedata_CellDoubleClick);
             // 
@@ -71,7 +70,7 @@
             this.LabelSostavlenieraspisanie.AutoSize = true;
             this.LabelSostavlenieraspisanie.Font = new System.Drawing.Font("Monotype Corsiva", 27.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LabelSostavlenieraspisanie.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.LabelSostavlenieraspisanie.Location = new System.Drawing.Point(152, 24);
+            this.LabelSostavlenieraspisanie.Location = new System.Drawing.Point(202, 24);
             this.LabelSostavlenieraspisanie.Name = "LabelSostavlenieraspisanie";
             this.LabelSostavlenieraspisanie.Size = new System.Drawing.Size(363, 45);
             this.LabelSostavlenieraspisanie.TabIndex = 2;
@@ -82,11 +81,10 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SgenerirovatMenu,
             this.CpravochnikiToolStripMenuItem,
-            this.составлениеToolStripMenuItem,
             this.EcsportMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(708, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(729, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -111,35 +109,30 @@
             // классыToolStripMenuItem
             // 
             this.классыToolStripMenuItem.Name = "классыToolStripMenuItem";
-            this.классыToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.классыToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.классыToolStripMenuItem.Text = "Классы";
             this.классыToolStripMenuItem.Click += new System.EventHandler(this.классыToolStripMenuItem_Click);
             // 
             // учителяToolStripMenuItem
             // 
             this.учителяToolStripMenuItem.Name = "учителяToolStripMenuItem";
-            this.учителяToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.учителяToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.учителяToolStripMenuItem.Text = "Учителя";
             this.учителяToolStripMenuItem.Click += new System.EventHandler(this.учителяToolStripMenuItem_Click);
             // 
             // кабинетыToolStripMenuItem
             // 
             this.кабинетыToolStripMenuItem.Name = "кабинетыToolStripMenuItem";
-            this.кабинетыToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.кабинетыToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.кабинетыToolStripMenuItem.Text = "Кабинеты";
             this.кабинетыToolStripMenuItem.Click += new System.EventHandler(this.кабинетыToolStripMenuItem_Click);
             // 
             // предметыToolStripMenuItem
             // 
             this.предметыToolStripMenuItem.Name = "предметыToolStripMenuItem";
-            this.предметыToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.предметыToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.предметыToolStripMenuItem.Text = "Предметы";
             this.предметыToolStripMenuItem.Click += new System.EventHandler(this.предметыToolStripMenuItem_Click);
-            // 
-            // составлениеToolStripMenuItem
-            // 
-            this.составлениеToolStripMenuItem.Name = "составлениеToolStripMenuItem";
-            this.составлениеToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
             // 
             // EcsportMenu
             // 
@@ -152,12 +145,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(708, 365);
+            this.ClientSize = new System.Drawing.Size(729, 365);
             this.Controls.Add(this.LabelSostavlenieraspisanie);
             this.Controls.Add(this.Raspisaniedata);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Glavnajaforma";
+            this.Text = "\'";
+            this.Load += new System.EventHandler(this.Glavnajaforma_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Raspisaniedata)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -175,7 +170,6 @@
         private System.Windows.Forms.ToolStripMenuItem учителяToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem кабинетыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem предметыToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem составлениеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SgenerirovatMenu;
         private System.Windows.Forms.ToolStripMenuItem EcsportMenu;
     }
